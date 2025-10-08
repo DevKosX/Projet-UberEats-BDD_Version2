@@ -1,0 +1,30 @@
+.gitignore
+# Dossiers Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+mymongo/
+myredis/
+
+# Dossiers spécifiques à MongoDB (dbPath)
+/avec-mongo/data/db/
+
+# Fichiers de données générés (si vous ne voulez pas les versionner)
+denormalisation.json
+EOF
+
+# Fichiers MongoDB
+avec-mongo/data/
+*.wt
+*.log
+journal/
+
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Environnements
+venv/
+__pycache__/
