@@ -1,0 +1,94 @@
+﻿id_plat,id_restaurant,name,price
+P0001,R001,Margherita classic,8.1
+P0002,R001,Steak house,7.94
+P0003,R001,Kebab classic,13.63
+P0004,R001,Burger classic,15.99
+P0005,R001,Tacos house,11.38
+P0006,R001,Sushi roll house,10.15
+P0007,R002,Frites house,15.02
+P0008,R002,Tagliatelle spicy,12.31
+P0009,R002,Chicken bowl spicy,15.72
+P0010,R002,Chicken bowl deluxe,12.66
+P0011,R003,Poke bowl spicy,17.68
+P0012,R003,Tagliatelle deluxe,9.96
+P0013,R003,Frites house,6.41
+P0014,R003,Vegan salad classic,14.19
+P0015,R004,Frites deluxe,13.48
+P0016,R004,Ramen spicy,11.42
+P0017,R004,Burger spicy,7.49
+P0018,R004,Ramen deluxe,4.81
+P0019,R005,Ramen spicy,16.33
+P0020,R005,Kebab house,5.73
+P0021,R005,Vegan salad deluxe,14.44
+P0022,R006,Pad Thai spicy,6.16
+P0023,R006,Steak deluxe,10.26
+P0024,R006,Pad Thai deluxe,6.87
+P0025,R006,Margherita deluxe,17.27
+P0026,R006,Vegan salad deluxe,5.63
+P0027,R006,Steak spicy,8.9
+P0028,R007,Fish & Chips classic,12.68
+P0029,R007,Sushi roll spicy,10.35
+P0030,R007,Couscous deluxe,6.05
+P0031,R007,Kebab spicy,14.06
+P0032,R007,Fish & Chips spicy,17.79
+P0033,R008,Vegan salad spicy,12.11
+P0034,R008,Tagliatelle spicy,6.16
+P0035,R008,Burger house,11.83
+P0036,R008,Steak spicy,14.98
+P0037,R008,Tagliatelle classic,17.43
+P0038,R008,Fish & Chips deluxe,14.84
+P0039,R009,Ramen classic,7.03
+P0040,R009,Tagliatelle house,14.59
+P0041,R009,Tagliatelle deluxe,16.84
+P0042,R009,Burger deluxe,14.46
+P0043,R010,Vegan salad deluxe,17.76
+P0044,R010,Frites house,9.23
+P0045,R010,Steak house,12.83
+P0046,R010,Frites classic,12.07
+P0047,R011,Kebab deluxe,16.74
+P0048,R011,Couscous deluxe,13.33
+P0049,R011,Margherita house,13.82
+P0050,R011,Tacos house,14.77
+P0051,R011,Couscous spicy,8.2
+P0052,R011,Chicken bowl house,14.84
+P0053,R012,Poke bowl house,12.87
+P0054,R012,Fish & Chips deluxe,14.79
+P0055,R012,Margherita spicy,10.24
+P0056,R013,Steak spicy,15.86
+P0057,R013,Burger classic,10.23
+P0058,R013,Tacos deluxe,12.63
+P0059,R013,Kebab house,6.19
+P0060,R013,Sushi roll classic,5.47
+P0061,R013,Chicken bowl house,10.99
+P0062,R014,Frites classic,6.24
+P0063,R014,Pad Thai house,8.98
+P0064,R014,Poke bowl house,16.7
+P0065,R014,Kebab spicy,15.06
+P0066,R014,Chicken bowl house,5.48
+P0067,R015,Tagliatelle spicy,10.59
+P0068,R015,Pad Thai house,14.79
+P0069,R015,Vegan salad deluxe,6.98
+P0070,R016,Ramen deluxe,11.36
+P0071,R016,Margherita classic,6.52
+P0072,R016,Ramen classic,7.58
+P0073,R016,Frites deluxe,12.77
+P0074,R017,Tacos spicy,7.23
+P0075,R017,Steak spicy,15.31
+P0076,R017,Sushi roll house,16.06
+P0077,R017,Chicken bowl spicy,16.23
+P0078,R017,Tagliatelle spicy,13.75
+P0079,R017,Burger spicy,9.9
+P0080,R018,Pad Thai deluxe,5.96
+P0081,R018,Burger house,16.15
+P0082,R018,Kebab classic,6.24
+P0083,R019,Tagliatelle spicy,11.5
+P0084,R019,Burger classic,15.85
+P0085,R019,Kebab spicy,11.41
+P0086,R019,Frites spicy,6.0
+P0087,R019,Fish & Chips deluxe,8.18
+P0088,R020,Kebab deluxe,11.28
+P0089,R020,Steak house,4.54
+P0090,R020,Pad Thai deluxe,17.86
+P0091,R020,Tacos house,14.54
+P0092,R020,Ramen classic,17.79
+P0093,R020,Pad Thai house,8.4

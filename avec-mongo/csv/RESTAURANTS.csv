@@ -1,0 +1,21 @@
+﻿id_restaurant,name,city,rating,cuisine
+R001,Resto_1 - LaDélicieux,Villetaneuse,4.4,Italian
+R002,Resto_2 - LaExpress,Pantin,4.7,Pizza
+R003,Resto_3 - LaMaison,Paris,4.4,Japanese
+R004,Resto_4 - LaMaison,Aubervilliers,3.7,Mexican
+R005,Resto_5 - ChezGourmet,Saint-Denis,3.4,Moroccan
+R006,Resto_6 - LaGourmet,Saint-Denis,4.4,Japanese
+R007,Resto_7 - ChezMaison,Villetaneuse,3.8,Indian
+R008,Resto_8 - ChezGourmet,Pantin,4.5,Fast Food
+R009,Resto_9 - LaExpress,Paris,4.9,Indian
+R010,Resto_10 - ChezMaison,Paris,3.5,Japanese
+R011,Resto_11 - ChezDélicieux,Pantin,4.8,French
+R012,Resto_12 - LaBon,Villetaneuse,3.7,Moroccan
+R013,Resto_13 - LaDélicieux,Épinay-sur-Seine,4.3,Moroccan
+R014,Resto_14 - LaGourmet,Saint-Denis,4.7,Moroccan
+R015,Resto_15 - ChezGourmet,Aubervilliers,4.6,French
+R016,Resto_16 - LaDélicieux,Saint-Denis,4.2,Italian
+R017,Resto_17 - ChezGourmet,Saint-Denis,3.6,Indian
+R018,Resto_18 - LaExpress,Paris,3.5,Japanese
+R019,Resto_19 - LeMaison,Épinay-sur-Seine,4.0,Japanese
+R020,Resto_20 - ChezMaison,Aubervilliers,4.5,Fast Food
