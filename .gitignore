@@ -1,4 +1,8 @@
 venv/
+mymongo/
+myredis/
 __pycache__/
 *.pyc
 .DS_Store
+/avec-mongo/data/
+/avec-redis/data/
