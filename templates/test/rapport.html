@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rapport de Projet | Uber Eats POC | Mohamed Kosbar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root {
+            --uber-green: #06C167;
+            --github-bg: #0d1117;
+            --github-card-bg: #161b22;
+            --github-border: #30363d;
+            --text-primary: #e6edf3;
+            --text-secondary: #8b949e;
+            --light-bg: #f6f8fa;
+            --light-card-bg: #ffffff;
+            --light-border: #d0d7de;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Roboto', sans-serif; transition: background-color 0.3s, color 0.3s; }
+
+        [data-bs-theme="dark"] { 
+            background-color: var(--github-bg); 
+            color: var(--text-primary); 
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%239C92AC' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        [data-bs-theme="light"] { 
+            background-color: var(--light-bg); 
+            color: #24292f; 
+        }
+
+        .navbar {
+            background-color: var(--github-card-bg) !important;
+            border-bottom: 1px solid var(--github-border);
+            transition: background-color 0.3s;
+        }
+        [data-bs-theme="light"] .navbar {
+            background: rgba(255, 255, 255, 0.95) !important;
+            border-bottom: 1px solid var(--light-border);
+        }
+
+        .hero-section {
+            width: 100%;
+            min-height: 50vh;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('uber.jpg');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .hero-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 900; color: white;
+            text-shadow: 0 0 20px rgba(0,0,0,0.7);
+            letter-spacing: 1px;
+            animation: fadeInDown 1s ease-out;
+        }
+        .hero-subtitle {
+            font-size: clamp(1.1rem, 3vw, 1.8rem);
+            color: var(--uber-green); font-weight: 700;
+            text-shadow: 0 0 10px rgba(0,0,0,0.5);
+            animation: fadeInDown 1.2s ease-out;
+        }
+        
+        .section-title { color: var(--uber-green); font-weight: 700; margin-bottom: 2rem; border-left: 4px solid var(--uber-green); padding-left: 1rem; }
+        .subsection-title { color: var(--text-secondary); font-weight: 700; margin-top: 2.5rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--github-border); padding-bottom: 0.5rem; }
+        [data-bs-theme="light"] .subsection-title { border-bottom-color: var(--light-border); }
+        
+        .card { 
+            border: 1px solid var(--github-border);
+            transition: transform 0.2s ease, border-color 0.2s ease;
+            background-color: var(--github-card-bg);
+            border-radius: 8px;
+        }
+        [data-bs-theme="light"] .card {
+            background-color: var(--light-card-bg);
+            border: 1px solid var(--light-border);
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--uber-green);
+        }
+
+        .code-container { position: relative; margin-bottom: 1rem; }
+        .code-viewer { background-color: var(--github-bg); border: 1px solid var(--github-border); border-radius: 8px; padding: 16px; font-family: 'Courier New', Courier, monospace; font-size: 0.875em; overflow-x: auto; color: #c9d1d9; }
+        .copy-btn { position: absolute; top: 8px; right: 8px; z-index: 10; opacity: 0.6; transition: opacity 0.2s; background-color: #30363d; border-color: #444; color: #fff; }
+        [data-bs-theme="light"] .copy-btn { background-color: #eee; border-color: #ccc; color: #333;}
+        .code-container:hover .copy-btn { opacity: 1; }
+        .code-viewer-area { display: none; } /* Caché par défaut */
+
+        .terminals-row { display: none; }
+        .terminal { background-color: #010409; color: #c9d1d9; font-family: 'Courier New', Courier, monospace; padding: 15px; border-radius: 8px; height: 350px; overflow-y: scroll; font-size: 0.9em; border: 1px solid var(--github-border); }
+        .terminal-header { background-color: var(--github-card-bg); padding: 8px 15px; border-top-left-radius: 8px; border-top-right-radius: 8px; color: #fff; font-weight: bold; border-bottom: 1px solid var(--github-border); }
+        
+        [data-bs-theme="light"] .terminal { background-color: #f6f8fa; color: #24292f; border-color: var(--light-border);}
+        [data-bs-theme="light"] .terminal-header { background-color: #e1e4e8; color: #24292f; border-bottom-color: var(--light-border); }
+        
+        .terminal-line.manager { color: #58a6ff; }
+        .terminal-line.livreur1 { color: #e362f2; }
+        .terminal-line.livreur2 { color: #d29922; }
+        .terminal-line.livreur3 { color: #3fb950; }
+        .terminal-line.info { color: var(--text-secondary); }
+        .terminal-line.success { color: var(--uber-green); font-weight: bold; }
+        .terminal-line.error { color: #f85149; }
+
+        .btn-uber { background-color: var(--uber-green); color: black; border: none; font-weight: bold; transition: background-color 0.2s ease; }
+        .btn-uber:hover { background-color: #05a056; color: black; }
+        [data-bs-theme="light"] .btn-outline-light { border-color: #212529; color: #212529; }
+        
+        hr { border-color: var(--github-border); opacity: 0.8; }
+        [data-bs-theme="light"] hr { border-color: var(--light-border); }
+
+        .flowchart { display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; gap: 1rem; text-align: center; }
+        .flow-item { padding: 1.5rem; border: 1px solid var(--github-border); border-radius: 8px; background-color: var(--github-bg); min-width: 200px; }
+        [data-bs-theme="light"] .flow-item { background-color: #f0f3f6; border-color: var(--light-border); }
+        .flow-item i { font-size: 2rem; color: var(--uber-green); margin-bottom: 0.5rem; }
+        .flow-arrow { font-size: 2rem; color: var(--text-secondary); }
+
+        .field-name {
+            font-family: 'Courier New', Courier, monospace;
+            color: var(--uber-green);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar navbar-expand-lg sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#"><i class="fa-solid fa-motorcycle"></i><span class="logo ms-2">Uber Eats POC</span></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item"><a class="nav-link" href="#introduction">1. Intro</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#methodes">2. Méthodes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#comparaison">3. Comparaison</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#discussion">4. Discussion</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#conclusion">5. Conclusion</a></li>
+                </ul>
+                <span class="navbar-text me-3 d-none d-lg-inline">Mohamed Kosbar</span>
+                <div class="form-check form-switch"><input class="form-check-input" type="checkbox" role="switch" id="theme-switcher" checked><label class="form-check-label" for="theme-switcher"><i class="fas fa-moon"></i></label></div>
+            </div>
+        </div>
+    </nav>
+    
+    <header class="hero-section">
+        <h1 class="hero-title">Projet Uber Eats</h1>
+        <h2 class="hero-subtitle">Rapport NoSQL : Redis VS MongoDB</h2>
+    </header>
+
+    <div class="container my-5">
+        <section id="introduction" class="mb-5 pt-4">
+            <h2 class="section-title">1. Introduction</h2>
+            <div class="card bg-body-tertiary mb-4"><div class="card-body">
+                <p class="lead"><strong>Objectif</strong> : Simuler une plateforme de type Uber Eats pour comparer deux mécanismes de communication en temps réel : <strong>Redis (Pub/Sub)</strong> et <strong>MongoDB (Change Streams)</strong>.</p>
+                <p>Pour bien comprendre le fonctionnement d'un système comme Uber Eats, j'ai voulu aller au-delà de la simple théorie. J'ai donc reproduit son flux de livraison de A à Z : un client passe une commande, un manager (simulé par un bot) la transforme en annonce, et plusieurs livreurs entrent en compétition pour l'obtenir. L'idée est de plonger au cœur de ces deux technologies pour voir concrètement comment elles se comportent et laquelle est la plus efficace pour gérer ce flux complexe en temps réel.</p>
+            </div></div>
+
+            <h3 class="subsection-title">1.2 Schéma de l'expérience</h3>
+            <div class="card bg-body-tertiary">
+                <div class="card-body">
+                    <p class="text-center text-secondary mb-4">Phase 1 : Publication de la course</p>
+                    <div class="flowchart">
+                        <div class="flow-item">
+                            <i class="fas fa-user"></i>
+                            <h6>Client</h6>
+                            <p class="small text-secondary">Passe une commande depuis un restaurant.</p>
+                        </div>
+                        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="flow-item">
+                            <i class="fas fa-robot"></i>
+                            <h6>Manager (Bot)</h6>
+                            <p class="small text-secondary">Prend la commande et la publie comme annonce.</p>
+                        </div>
+                        <div class="flow-arrow"><i class="fas fa-arrow-right"></i></div>
+                        <div class="flow-item">
+                            <i class="fas fa-motorcycle"></i>
+                            <h6>Livreurs</h6>
+                            <p class="small text-secondary">Reçoivent l'annonce en temps réel et peuvent postuler.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex justify-content-center my-3">
+                        <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+                    </div>
+                     <p class="text-center text-secondary mb-4">Phase 2 : Attribution de la course</p>
+                     <div class="flowchart">
+                        <div class="flow-item">
+                            <i class="fas fa-check-circle"></i>
+                            <h6>Livreur Sélectionné</h6>
+                            <p class="small text-secondary">Reçoit une confirmation et commence la course.</p>
+                        </div>
+                        <div class="flow-arrow"><i class="fas fa-arrow-left"></i></div>
+                        <div class="flow-item">
+                            <i class="fas fa-robot"></i>
+                            <h6>Manager (Bot)</h6>
+                            <p class="small text-secondary">Après un délai, analyse les réponses et choisit un livreur.</p>
+                        </div>
+                         <div class="flow-arrow"><i class="fas fa-arrow-left"></i></div>
+                        <div class="flow-item">
+                            <i class="fas fa-motorcycle"></i>
+                            <h6>Livreurs</h6>
+                            <p class="small text-secondary">Envoient leur intérêt pour la course au système.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <h3 class="subsection-title">1.3 Architecture du Projet</h3>
+            <div class="card bg-body-tertiary">
+                <div class="card-body">
+                    <p>Pour mener cette comparaison de manière claire et organisée, j'ai structuré mon projet comme suit :</p>
+                    <pre class="code-viewer"><code>projet-uber/
+├── avec-mongo/
+│   ├── annonces.json         # Données dénormalisées pour MongoDB
+│   ├── manager_mongo.py      # Script du manager (bot) pour MongoDB
+│   ├── livreur_mongo.py      # Script du livreur pour MongoDB
+│   └── reporting_mongo.py    # Script pour calcul CA avec MongoDB
+├── avec-redis/
+│   ├── annonces.json         # Données dénormalisées pour Redis
+│   ├── manager_redis.py      # Script du manager (bot) pour Redis
+│   ├── livreur_redis.py      # Script du livreur pour Redis
+│   └── reporting_redis.py    # Script pour calcul CA avec Redis
+├── csv/                      # Dossier contenant les 8 fichiers CSV initiaux
+│   ├── Clients.csv
+│   ├── Restaurants.csv
+│   └── ... (etc.)
+└── denormalisation.py        # Script pour générer annonces.json depuis les CSV
+</code></pre>
+                    <p>J'ai séparé les deux implémentations dans des dossiers distincts, <span class="field-name">avec-mongo</span> et <span class="field-name">avec-redis</span>. Chaque dossier contient :</p>
+                    <ul>
+                        <li>Le fichier <span class="field-name">annonces.json</span> : C'est le résultat de ma dénormalisation, qui sert de source de données pour les simulations.</li>
+                        <li>Le script <span class="field-name">manager_*.py</span> : Il simule le bot qui publie les annonces et attribue les courses.</li>
+                        <li>Le script <span class="field-name">livreur_*.py</span> : Il représente un livreur qui écoute les annonces et y répond. Je peux lancer plusieurs instances de ce script pour simuler la compétition.</li>
+                         <li>Le script <span class="field-name">reporting_*.py</span> : Il contient la logique pour calculer le chiffre d'affaires, démontrant les capacités de chaque base de données pour des requêtes analytiques classiques.</li>
+                    </ul>
+                    <p>À la racine, le script <span class="field-name">denormalisation.py</span> est celui que j'ai créé pour transformer mes données CSV initiales (qui sont dans le dossier <span class="field-name">csv/</span>) en fichier <span class="field-name">annonces.json</span> utilisé par les deux POCs. Cette structure me permet de tester chaque technologie de manière isolée tout en partant des mêmes données.</p>
+                </div>
+            </div>
+        </section>
+        <hr/>
+        
+        <section id="methodes" class="my-5 pt-4">
+            <h2 class="section-title">2. Matériels et Méthodes</h2>
+            <h3 class="subsection-title">2.1 Environnement Technique et Installation</h3>
+            <div class="card bg-body-tertiary">
+                <div class="card-header"><ul class="nav nav-tabs card-header-tabs" id="installation-tabs" role="tablist">
+                    <li class="nav-item" role="presentation"><button class="nav-link active" id="python-install-tab" data-bs-toggle="tab" data-bs-target="#python-install" type="button" role="tab">Étape 1 : Installation de Python</button></li>
+                    <li class="nav-item" role="presentation"><button class="nav-link" id="redis-install-tab" data-bs-toggle="tab" data-bs-target="#redis-install" type="button" role="tab">Étape 2 : Installation de Redis</button></li>
+                    <li class="nav-item" role="presentation"><button class="nav-link" id="mongo-install-tab" data-bs-toggle="tab" data-bs-target="#mongo-install" type="button" role="tab">Étape 3 : Installation de MongoDB</button></li>
+                </ul></div>
+                <div class="card-body"><div class="tab-content pt-3" id="installation-tabs-content">
+                    <div class="tab-pane fade show active" id="python-install" role="tabpanel">
+                        <h5 class="card-title">Installation de Python (Version 3.12+)</h5>
+                        <p class="small text-secondary">1. Préparer l'environnement Python</p>
+                        <div class="code-container"><pre class="code-viewer"><code>python3 -m venv venv-projet</code></pre><button class="btn btn-sm btn-outline-secondary copy-btn" title="Copier le code"><i class="fas fa-copy"></i></button></div>
+                        <div class="code-container"><pre class="code-viewer"><code>source venv-projet/bin/activate</code></pre><button class="btn btn-sm btn-outline-secondary copy-btn" title="Copier le code"><i class="fas fa-copy"></i></button></div>
+                        <p class="small text-secondary mt-3">2. Installer les librairies nécessaires</p>
+                        <div class="code-container"><pre class="code-viewer"><code>pip install pandas pymongo redis</code></pre><button class="btn btn-sm btn-outline-secondary copy-btn" title="Copier le code"><i class="fas fa-copy"></i></button></div>
+                    </div>
+                    <div class="tab-pane fade" id="redis-install" role="tabpanel">
+                        <h5 class="card-title">Installation de Redis (Version 7.x)</h5>
+                        <p class="small text-secondary">1. Installer Redis Server</p>
+                        <div class="code-container"><pre class="code-viewer"><code>sudo apt update</code></pre><button class="btn btn-sm btn-outline-secondary copy-btn" title="Copier le code"><i class="fas fa-copy"></i></button></div>
+                        <div class="code-container"><pre class="code-viewer"><code>sudo apt install redis-server</code></pre><button class="btn btn-sm btn-outline-secondary copy-btn" title="Copier le code"><i class="fas fa-copy"></i></button></div>
+                        <p class="small text-secondary mt-3">2. Vérifier que le serveur est actif</p>
+                        <div class="code-container"><pre class="code-viewer"><code>redis-cli ping</code></pre><button class="btn btn-sm btn-outline-secondary copy-btn" title="Copier le code"><i class="fas fa-copy"></i></button></div>
+                    </div>
+                    <div class="tab-pane fade" id="mongo-install" role="tabpanel">
+                       <h5 class="card-title">Installation de MongoDB (Version 7.x)</h5>
+                       <p class="small text-warning">Rappel : MongoDB doit être lancé en mode "Replica Set" pour que les Change Streams fonctionnent.</p>
+                       <p class="small text-secondary">1. Lancer MongoDB en Replica Set</p>
+                       <div class="code-container"><pre class="code-viewer"><code>mongod --port 27017 --dbpath /chemin/vers/data --replSet rs0</code></pre><button class="btn btn-sm btn-outline-secondary copy-btn" title="Copier le code"><i class="fas fa-copy"></i></button></div>
+                       <p class="small text-secondary mt-3">2. Initialiser le Replica Set (dans un autre terminal)</p>
+                       <div class="code-container"><pre class="code-viewer"><code>mongosh</code></pre><button class="btn btn-sm btn-outline-secondary copy-btn" title="Copier le code"><i class="fas fa-copy"></i></button></div>
+                        <div class="code-container"><pre class="code-viewer"><code>rs.initiate()</code></pre><button class="btn btn-sm btn-outline-secondary copy-btn" title="Copier le code"><i class="fas fa-copy"></i></button></div>
+                    </div>
+                </div></div>
+            </div>
+
+            <h3 class="subsection-title">2.2 Préparation et Dénormalisation des Données</h3>
+            <p>Pour que ma simulation soit hyper-rapide, il fallait absolument éviter les jointures. J'ai donc pris mon modèle relationnel de 8 tables et je l'ai transformé en un document unique <span class="field-name">annonce</span> via le script <span class="field-name">denormalisation.py</span>.</p>
+            
+            <div class="card bg-body-tertiary">
+                <div class="card-body">
+                    <h5 class="card-title">Ma Stratégie de Dénormalisation</h5>
+                    <p>Pour créer mon document <span class="field-name">annonce</span> unique et performant, je me suis basé sur plusieurs critères de fusion, en faisant attention à la cohérence des données.</p>
+
+                    <p><strong>Critère 1 : Rassembler les données fréquemment interrogées conjointement.</strong> J'ai remarqué que pour chaque annonce, un livreur a systématiquement besoin de savoir d'où partir (le restaurant), où aller (le client) et combien il va gagner (la rétribution). Dans mon modèle relationnel, obtenir ces infos demanderait plusieurs jointures, ce qui serait trop lent pour du temps réel. J'ai donc décidé d'intégrer directement une copie des informations essentielles du <span class="field-name">client</span>, du <span class="field-name">restaurant</span> et la <span class="field-name">retribution_livreur</span> dans chaque document <span class="field-name">annonce</span>. Comme ces infos (nom, adresse) changent peu souvent une fois la commande passée, le risque de problème de cohérence est faible, mais le gain en vitesse de lecture est énorme.</p>
+
+                    <p><strong>Critère 2 : Intégrer les données d'entités indépendantes.</strong> J'ai vu que la liste des plats d'une commande (<span class="field-name">details_commande</span>) et la liste des livreurs intéressés par une annonce (<span class="field-name">interets_livreurs</span>) sont totalement spécifiques à cette annonce unique. Les plats de la commande 1001 n'ont aucun lien avec ceux de la commande 1002. De même, les livreurs intéressés par l'annonce A sont indépendants de ceux intéressés par l'annonce B. Comme ces données sont indépendantes et n'existent que dans le contexte de l'annonce, je les ai intégrées directement sous forme de tableaux (listes) à l'intérieur du document <span class="field-name">annonce</span>. Ça évite d'avoir des collections séparées juste pour ça.</p>
+                    
+                    <p><strong>Critère 3 (Adapté) : Gérer les relations 1-N avec prudence.</strong> Bien qu'un restaurant puisse avoir plusieurs commandes, ou un client plusieurs commandes, j'ai choisi de ne pas intégrer toutes les commandes dans le document du restaurant ou du client. Cela aurait créé des documents gigantesques et difficiles à gérer. J'ai préféré garder l'annonce comme document central et y intégrer des "snapshots" (copies) des infos du client et du restaurant (comme expliqué au critère 1).</p>
+
+                    <p><strong>Critère 4 : Regrouper les champs ayant le même taux de mise à jour.</strong> J'ai constaté que le statut de l'annonce (<span class="field-name">statut</span> : 'PUBLIEE', 'ATTRIBUEE', etc.) et l'information sur le livreur finalement choisi (<span class="field-name">livreur_attribue</span>) évoluent ensemble, au même rythme que l'annonce elle-même. Quand j'attribue la course, ces deux champs changent en même temps. En les gardant dans le même document <span class="field-name">annonce</span>, je peux les mettre à jour en une seule opération atomique avec MongoDB. Ça garantit que mes données restent toujours cohérentes : je ne peux pas avoir une course marquée comme attribuée sans savoir à quel livreur.</p>
+                </div>
+            </div>
+
+            <div class="card bg-body-tertiary mt-4">
+                <div class="card-header">Visualisation de la Transformation</div>
+                <div class="card-body text-center">
+                    <h5 class="mb-3">Mon Modèle Normalisé de Départ</h5>
+                    <img src="normalisation.png" alt="Schéma de la base de données normalisée" class="img-fluid rounded shadow-sm mb-3" style="max-width: 700px;">
+                    <div class="flow-arrow my-3"><i class="fas fa-arrow-down fa-2x"></i></div>
+                    <h5 class="mb-3">Le Document Dénormalisé Obtenu</h5>
+                    <img src="denormalisation.png" alt="Schéma du document NoSQL dénormalisé" class="img-fluid rounded shadow-sm" style="max-width: 700px;">
+                </div>
+            </div>
+
+            <div class="card bg-body-tertiary mt-4">
+<div class="card bg-body-tertiary mt-4">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" id="denorm-tabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="script-denorm-tab" data-bs-toggle="tab" data-bs-target="#script-denorm-content" type="button" role="tab">Script de Dénormalisation</button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="json-result-tab" data-bs-toggle="tab" data-bs-target="#json-result-content" type="button" role="tab">Résultat Obtenu (annonces.json)</button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="denorm-tabs-content">
+                        <div class="tab-pane fade show active" id="script-denorm-content" role="tabpanel">
+                            <h5 class="card-title mb-3">Le Script <span class="field-name">denormalisation.py</span></h5>
+                            <p>Pour automatiser la transformation de mes données CSV en un format NoSQL optimisé, j'ai écrit ce script Python. Voici comment il fonctionne :</p>
+                            <ol class="small text-secondary">
+                                <li>Il commence par lire tous mes 8 fichiers CSV (Clients, Restaurants, etc.) et les charge en mémoire en utilisant la librairie Pandas. Ça me permet d'accéder rapidement aux informations de n'importe quelle entité via son ID.</li>
+                                <li>Ensuite, il parcourt le fichier <span class="field-name">Commandes.csv</span> ligne par ligne.</li>
+                                <li>Pour chaque commande, il utilise les IDs (<span class="field-name">id_client</span>, <span class="field-name">id_restaurant</span>, etc.) pour aller chercher les informations complètes dans les données chargées en mémoire (nom du client, adresse du resto, liste des plats, livreurs intéressés...).</li>
+                                <li>Il assemble toutes ces informations récupérées pour construire un seul gros document JSON, que j'appelle <span class="field-name">annonce</span>. Ce document contient absolument tout ce qui concerne cette commande spécifique.</li>
+                                <li>Enfin, une fois toutes les commandes traitées, il sauvegarde la liste complète de ces documents <span class="field-name">annonce</span> dans un unique fichier <span class="field-name">annonces.json</span>.</li>
+                            </ol>
+                            <button id="toggle-denorm-code" class="btn btn-outline-secondary mb-3 mt-2">Voir le Code Source du Script</button>
+                            <div id="denorm-code-block" style="display: none;">
+                                <pre class="code-viewer"><code>#!/usr/bin/env python3
+import pandas as pd
+import json
+from pathlib import Path
+import math
+
+BASE_DIR = Path(__file__).resolve().parent
+CSV_DIR = BASE_DIR / "csv" 
+
+FICHIERS_CSV = {
+    "clients": CSV_DIR / "Clients.csv",
+    "restaurants": CSV_DIR / "Restaurants.csv",
+    "plats": CSV_DIR / "Plats.csv",
+    "livreurs": CSV_DIR / "Livreurs.csv",
+    "managers": CSV_DIR / "Managers.csv",
+    "commandes": CSV_DIR / "Commandes.csv",
+    "details_commandes": CSV_DIR / "Details_Commande.csv",
+    "interets_livreurs": CSV_DIR / "Interets_Livreurs.csv"
+}
+
+def charger_csv(fichier_path, index_col):
+    if not fichier_path.exists(): return {}
+    df = pd.read_csv(fichier_path, sep=';')
+    df = df.where(pd.notna(df), None)
+    records = df.to_dict(orient="records")
+    return {record[index_col]: record for record in records}
+
+def denormaliser_donnees():
+    # ... (code de la fonction identique à avant) ...
+    clients_map = charger_csv(FICHIERS_CSV["clients"], 'id_client')
+    restaurants_map = charger_csv(FICHIERS_CSV["restaurants"], 'id_restaurant')
+    plats_map = charger_csv(FICHIERS_CSV["plats"], 'id_plat')
+    livreurs_map = charger_csv(FICHIERS_CSV["livreurs"], 'id_livreur')
+    managers_map = charger_csv(FICHIERS_CSV["managers"], 'id_manager')
+    
+    commandes_df = pd.read_csv(FICHIERS_CSV["commandes"], sep=';')
+    commandes = commandes_df.to_dict(orient="records")
+
+    details_df = pd.read_csv(FICHIERS_CSV["details_commandes"], sep=';')
+    details_par_commande = details_df.groupby('id_commande').apply(lambda x: x.to_dict('records')).to_dict()
+
+    interets_df = pd.read_csv(FICHIERS_CSV["interets_livreurs"], sep=';')
+    interets_par_commande = interets_df.groupby('id_commande').apply(lambda x: x.to_dict('records')).to_dict()
+
+    annonces_denormalisees = []
+
+    for cmd in commandes:
+        cmd_id = cmd['id_commande']
+        
+        details_bruts = details_par_commande.get(cmd_id, [])
+        items_commande = []
+        for detail in details_bruts:
+            plat_info = plats_map.get(detail['id_plat'], {})
+            items_commande.append({
+                "id_plat": plat_info.get('id_plat'),
+                "nom_plat": plat_info.get('nom_plat'),
+                "quantite": detail.get("quantite", 1),
+                "prix": plat_info.get('prix_plat')
+            })
+
+        interets_bruts = interets_par_commande.get(cmd_id, [])
+        livreurs_interesses = []
+        for interet in interets_bruts:
+            livreur_info = livreurs_map.get(interet['id_livreur'], {})
+            livreurs_interesses.append({
+                "id_livreur": livreur_info.get('id_livreur'),
+                "nom_livreur": livreur_info.get('nom_livreur'),
+                "timestamp_interet": interet.get('timestamp_interet')
+            })
+
+        livreur_attribue_id = cmd.get('id_livreur_attribue')
+        livreur_attribue_info = livreurs_map.get(int(livreur_attribue_id)) if livreur_attribue_id and not math.isnan(livreur_attribue_id) else None
+
+        annonce = {
+            "_id": f"annonce_{cmd_id}",
+            "statut": cmd.get('statut_commande'),
+            "date_creation": cmd.get('date_creation'),
+            "client": clients_map.get(cmd['id_client'], {}),
+            "restaurant": restaurants_map.get(cmd['id_restaurant'], {}),
+            "publication_par": managers_map.get(cmd['id_manager_publication'], {}),
+            "details_commande": items_commande,
+            "prix_total": cmd.get('prix_total'),
+            "retribution_livreur": cmd.get('retribution_livreur'),
+            "interets_livreurs": livreurs_interesses,
+            "livreur_attribue": livreur_attribue_info
+        }
+        annonces_denormalisees.append(annonce)
+
+    return annonces_denormalisees
+
+if __name__ == "__main__":
+    data_denormalisee = denormaliser_donnees()
+    output_json = BASE_DIR / "annonces.json"
+    with output_json.open("w", encoding="utf-8") as f:
+        json.dump(data_denormalisee, f, ensure_ascii=False, indent=2)
+    print(f"Dénormalisation terminée : {output_json.name} généré.")
+</code></pre>
+                            </div>
+                        </div>
+
+                        <div class="tab-pane fade" id="json-result-content" role="tabpanel">
+                             <h5 class="card-title mb-3">Exemple de Résultat (<span class="field-name">annonces.json</span>)</h5>
+                             <p class="text-secondary small">Voici un exemple de document contenu dans le fichier <span class="field-name">annonces.json</span> généré par le script. Chaque document représente une annonce complète et contient toutes les informations nécessaires pour la simulation.</p>
+                             <pre class="code-viewer"><code>[
+  {
+    "_id": "annonce_1001",
+    "statut": "EN_COURS",
+    "date_creation": "2025-10-16 12:00:00",
+    "client": {
+      "id_client": 101,
+      "nom_client": "Mohamed Kosbar",
+      "ville_client": "Paris",
+      "email": "mohamed.k@email.com"
+      // ... autres infos client si présentes dans Clients.csv
+    },
+    "restaurant": {
+      "id_restaurant": 201,
+      "nom_restaurant": "Le Burger de la Cité",
+      "ville_restaurant": "Paris",
+      "note_restaurant": 4.5
+      // ... autres infos restaurant si présentes dans Restaurants.csv
+    },
+    "publication_par": {
+      "id_manager": 901,
+      "nom_manager": "Bot-Publication-Alpha",
+      "type_manager": "bot"
+    },
+    "details_commande": [
+      { 
+        "id_plat": 501, 
+        "nom_plat": "Burger Classique", 
+        "quantite": 1, 
+        "prix": 12.5 
+      },
+      { 
+        "id_plat": 502, 
+        "nom_plat": "Burger Double Fromage", 
+        "quantite": 1, 
+        "prix": 14.0 
+      }
+    ],
+    "prix_total": 26.5,
+    "retribution_livreur": 4.5,
+    "interets_livreurs": [], // Sera rempli par les livreurs
+    "livreur_attribue": {
+      "id_livreur": 701,
+      "nom_livreur": "Karim Le Véloce",
+      "statut_livreur": "online",
+      "vehicule": "Scooter",
+      "date_inscription": "2025-01-10 09:00:00"
+    }
+  },
+  // ... autres annonces
+]
+</code></pre>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <hr/>
+
+        <script>
+            // --- Toggle pour le code de dénormalisation ---
+        const toggleDenormBtn = document.getElementById('toggle-denorm-code');
+        const denormCodeBlock = document.getElementById('denorm-code-block');
+        if (toggleDenormBtn && denormCodeBlock) {
+            // Cacher initialement si ce n'est pas déjà fait par le style inline
+            denormCodeBlock.style.display = 'none'; 
+            toggleDenormBtn.addEventListener('click', () => {
+                 denormCodeBlock.style.display = denormCodeBlock.style.display === 'none' ? 'block' : 'none';
+                 toggleDenormBtn.textContent = denormCodeBlock.style.display === 'none' ? 'Voir le Code Source' : 'Cacher le Code Source';
+            });
+        }
+        </script>
+<section id="comparaison" class="my-5 pt-4">
+            <h2 class="section-title">3. Tableau Comparatif : Redis vs. MongoDB</h2>
+            <div class="card bg-body-tertiary">
+                <div class="card-header">Synthèse des caractéristiques et opérations utilisées</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>Critère</th>
+                                    <th>Redis (POC 1)</th>
+                                    <th>MongoDB (POC 2)</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Principe de communication</td>
+                                    <td><code class="field-name">PUBLISH</code> / <code class="field-name">SUBSCRIBE</code></td>
+                                    <td><code class="field-name">watch()</code> (Change Streams)</td>
+                                </tr>
+                                <tr>
+                                    <td>Vitesse perçue (temps réel)</td>
+                                    <td class="text-success">Ultra rapide</td>
+                                    <td>Très rapide</td>
+                                </tr>
+                                <tr>
+                                    <td>Persistance (par défaut)</td>
+                                    <td class="text-danger">Non (RAM)</td>
+                                    <td class="text-success">Oui (Disque)</td>
+                                </tr>
+                                <tr>
+                                    <td>Cas d'usage idéal (POC)</td>
+                                    <td>Notifications, stockage temporaire</td>
+                                    <td>Cycle de vie annonce, historique, reporting</td>
+                                </tr>
+                                <tr>
+                                    <td>Avantage principal</td>
+                                    <td>Vitesse brute</td>
+                                    <td>Persistance, requêtage riche</td>
+                                </tr>
+                                <tr>
+                                    <td>Inconvénient principal</td>
+                                    <td>Persistance/Requêtes complexes = effort</td>
+                                    <td>Plus lourd, config Replica Set</td>
+                                </tr>
+
+                                <tr class="table-group-divider">
+                                    <td colspan="3" class="text-center text-secondary small">Opérations CRUD utilisées dans mes scripts</td>
+                                </tr>
+                                <tr>
+                                    <td>Méthode d'ajout (Create)</td>
+                                    <td><code class="field-name">PUBLISH</code>, <code class="field-name">HSET</code>, <code class="field-name">ZADD</code></td>
+                                    <td><code class="field-name">insert_one</code>, <code class="field-name">replace_one</code>, <code class="field-name">update_one (upsert)</code></td>
+                                </tr>
+                                 <tr>
+                                    <td>Méthodes de modification (Update)</td>
+                                    <td><code class="field-name">HSET</code></td>
+                                    <td><code class="field-name">update_one ($addToSet, $set)</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Méthodes de consultation (Read)</td>
+                                    <td><code class="field-name">HGETALL</code>, <code class="field-name">ZRANGEBYSCORE</code></td>
+                                    <td><code class="field-name">find_one</code>, <code class="field-name">aggregate</code>, <code class="field-name">watch</code></td>
+                                </tr>
+                                <tr>
+                                    <td>Methodes de suppression (Delete)</td>
+                                    <td><code class="field-name">DELETE</code></td>
+                                    <td><code class="field-name">delete_many</code></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+             <div class="card bg-body-tertiary mt-4">
+                 <div class="card-body">
+                    <h5 class="card-title text-center">Visualisation des Performances (Mise à jour)</h5>
+                    <canvas id="comparisonChart"></canvas>
+                </div>
+            </div>
+        </section>
+        <hr/>
+
+        <section id="discussion" class="my-5 pt-4">
+            <h2 class="section-title">4. Discussion : Analyse des POCs</h2>
+            
+            <h3 class="subsection-title">4.1 POC 1 : Redis et le modèle Pub/Sub</h3>
+            <div class="card bg-body-tertiary"><div class="card-body">
+                <p>Dans cette simulation, le manager publie une annonce sur un canal Redis. Les livreurs abonnés reçoivent l'annonce instantanément. Pour manifester leur intérêt, ils écrivent dans un Hash Redis propre à la course. Après un délai, le manager lit ce Hash, choisit le gagnant, et publie le résultat sur un second canal de notifications.</p>
+                <div class="demo-area mt-4">
+                    <h4>Démonstration Live (Redis)</h4>
+                    <div class="mb-3 d-flex flex-wrap gap-2">
+                        <button id="start-redis-manager" class="btn btn-uber">Lancer Manager</button>
+                        <button id="start-redis-livreur1" class="btn btn-outline-light">Lancer Livreur 1</button>
+                        <button id="start-redis-livreur2" class="btn btn-outline-light">Lancer Livreur 2</button>
+                        <button id="start-redis-livreur3" class="btn btn-outline-light">Lancer Livreur 3</button>
+                        <button id="toggle-redis-code" class="btn btn-outline-secondary ms-md-auto">Voir/Cacher Code Source</button>
+                    </div>
+                    <div class="row terminals-row" id="redis-terminals">
+                        <div class="col-lg-6 mb-3"><div class="terminal-header">MANAGER</div><div class="terminal" id="redis-manager-terminal"></div></div>
+                        <div class="col-lg-6"><div class="terminal-header">LIVREURS</div><div class="terminal" id="redis-livreurs-terminal"></div></div>
+                    </div>
+                </div>
+                <div class="code-viewer-area mt-4" id="redis-code-block"><div class="card bg-body-tertiary">
+                    <div class="card-header"><ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#manager-redis" type="button">manager_redis.py</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#livreur-redis" type="button">livreur_redis.py</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#reporting-redis" type="button">reporting_redis.py</button></li>
+                    </ul></div>
+                    <div class="card-body"><div class="tab-content">
+                        <div class="tab-pane fade show active" id="manager-redis"><pre class="code-viewer"><code>#!/usr/bin/env python3
+import time
+import random
+import json
+from pathlib import Path
+import redis
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+ANNONCES_CHANNEL = 'annonces_channel'
+NOTIFICATIONS_CHANNEL = 'notifications_channel'
+DELAI_ATTENTE_SECONDES = 10
+
+try:
+    r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
+    r.ping()
+    print("Connexion à Redis réussie.")
+except Exception as e:
+    print(f"Erreur de connexion à Redis: {e}")
+    exit()
+
+def charger_annonces_locales():
+    annonces_file = Path(__file__).resolve().parent / "annonces.json"
+    if not annonces_file.exists():
+        print("Fichier 'annonces.json' introuvable.")
+        return []
+    with annonces_file.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+def publier_annonce(annonce):
+    annonce_id = annonce['_id']
+    key_interets = f"interets:{annonce_id}"
+    r.delete(key_interets)
+    r.publish(ANNONCES_CHANNEL, json.dumps(annonce))
+    print(f"\n[MANAGER] Annonce '{annonce_id}' publiée.")
+    return annonce_id
+
+def attribuer_course(annonce_id):
+    print(f"[MANAGER] Attente de {DELAI_ATTENTE_SECONDES}s...")
+    time.sleep(DELAI_ATTENTE_SECONDES)
+    key_interets = f"interets:{annonce_id}" # Re-définir la clé ici
+    interets = r.hgetall(key_interets)
+    if not interets:
+        notification = {"annonce_id": annonce_id, "status": "ANNULEE"}
+        r.publish(NOTIFICATIONS_CHANNEL, json.dumps(notification))
+        print(f"[MANAGER] Personne n'a répondu à '{annonce_id}'.")
+        return
+    livreur_gagnant_id = min(interets, key=interets.get)
+    print(f"[MANAGER] Livreur '{livreur_gagnant_id}' choisi pour '{annonce_id}'.")
+    notification = {
+        "annonce_id": annonce_id,
+        "status": "ATTRIBUEE",
+        "gagnant": {"id_livreur": livreur_gagnant_id}
+    }
+    r.publish(NOTIFICATIONS_CHANNEL, json.dumps(notification))
+    r.delete(key_interets)
+
+if __name__ == "__main__":
+    annonces_a_publier = charger_annonces_locales()
+    if not annonces_a_publier: exit()
+    print("--- Démarrage du Manager Bot (Redis Pub/Sub) ---")
+    try:
+        while True:
+            annonce_id = publier_annonce(random.choice(annonces_a_publier))
+            if annonce_id: attribuer_course(annonce_id)
+            time.sleep(15)
+    except KeyboardInterrupt:
+        print("\nArrêt du Manager.")
+</code></pre></div>
+                        <div class="tab-pane fade" id="livreur-redis"><pre class="code-viewer"><code>#!/usr/bin/env python3
+import time
+import random
+import json
+import threading
+import redis
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+ANNONCES_CHANNEL = 'annonces_channel'
+NOTIFICATIONS_CHANNEL = 'notifications_channel'
+LIVREUR_ID = f'livreur_{random.randint(100, 999)}' 
+
+try:
+    r_command = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
+    r_listen = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
+    r_command.ping()
+    print(f"{LIVREUR_ID} connecté à Redis.")
+except Exception as e:
+    print(f"Erreur de connexion à Redis pour {LIVREUR_ID}: {e}")
+    exit()
+
+def manifester_interet(annonce_id):
+    key_interets = f"interets:{annonce_id}"
+    r_command.hset(key_interets, LIVREUR_ID, time.time())
+    print(f"{LIVREUR_ID} manifeste son intérêt pour '{annonce_id}'.")
+
+def ecouter_notifications():
+    pubsub = r_listen.pubsub()
+    pubsub.subscribe(NOTIFICATIONS_CHANNEL)
+    for message in pubsub.listen():
+        if message['type'] == 'message':
+            try:
+                notification = json.loads(message['data'])
+                annonce_id = notification['annonce_id']
+                if notification['status'] == 'ATTRIBUEE':
+                    gagnant_id = notification['gagnant']['id_livreur']
+                    if gagnant_id == LIVREUR_ID:
+                        print(f"GAGNÉ ! {LIVREUR_ID} a obtenu la course '{annonce_id}'!")
+                    else:
+                        print(f"PERDU... La course '{annonce_id}' a été prise par '{gagnant_id}'.")
+                elif notification['status'] == 'ANNULEE':
+                     print(f"ANNULÉE... La course '{annonce_id}' n'a pas trouvé de livreur.")
+            except (json.JSONDecodeError, KeyError) as e:
+                print(f"[ERREUR NOTIF] Problème avec le message: {e} - Message: {message.get('data', '')}")
+
+def ecouter_annonces():
+    pubsub = r_command.pubsub()
+    pubsub.subscribe(ANNONCES_CHANNEL)
+    print(f"{LIVREUR_ID} est en ligne et écoute les annonces...")
+    for message in pubsub.listen():
+        if message['type'] == 'message':
+            try:
+                annonce = json.loads(message['data'])
+                print(f"\n{LIVREUR_ID} a reçu l'annonce '{annonce['_id']}' pour {annonce['retribution_livreur']}€.")
+                if random.random() < 0.8:
+                    manifester_interet(annonce['_id'])
+                else:
+                    print(f"{LIVREUR_ID} ignore cette annonce.")
+            except (json.JSONDecodeError, KeyError) as e:
+                 print(f"[ERREUR ANNONCE] Problème avec le message: {e} - Message: {message.get('data', '')}")
+
+
+if __name__ == "__main__":
+    try:
+        notification_thread = threading.Thread(target=ecouter_notifications, daemon=True)
+        notification_thread.start()
+        ecouter_annonces()
+    except KeyboardInterrupt:
+        print(f"\n{LIVREUR_ID} se déconnecte.")
+</code></pre></div>
+                         <div class="tab-pane fade" id="reporting-redis"><pre class="code-viewer"><code>#!/usr/bin/env python3
+import redis
+import time
+import json
+from datetime import datetime, timedelta
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+SORTED_SET_COMMANDES_TERMINEES = "commandes_terminees_par_date"
+HASH_COMMANDE_PREFIX = "commande_terminee:"
+
+try:
+    r = redis.Redis(host=REDIS_HOST, port=REDIS_PORT, decode_responses=True)
+    r.ping()
+    print("Connexion à Redis réussie.")
+except Exception as e:
+    print(f"Erreur de connexion à Redis: {e}")
+    exit()
+
+def _datetime_to_timestamp(dt):
+    return dt.timestamp()
+
+def calculer_ca_restaurants_redis(date_debut, date_fin):
+    print(f"\nCalcul du CA pour tous les restaurants entre {date_debut.date()} et {date_fin.date()}...")
+    ca_par_restaurant = {}
+    ts_debut = _datetime_to_timestamp(date_debut)
+    ts_fin = _datetime_to_timestamp(date_fin)
+
+    try:
+        commandes_ids = r.zrangebyscore(SORTED_SET_COMMANDES_TERMINEES, ts_debut, ts_fin)
+    except redis.exceptions.ResponseError:
+        print(f"Erreur: La clé '{SORTED_SET_COMMANDES_TERMINEES}' n'existe pas ou n'est pas un Sorted Set.")
+        return {}
+
+    if not commandes_ids:
+        print("Aucune commande trouvée pour cette période.")
+        return {}
+
+    print(f"Trouvé {len(commandes_ids)} commandes potentielles.")
+    for annonce_id in commandes_ids:
+        key_hash = f"{HASH_COMMANDE_PREFIX}{annonce_id}"
+        details_commande = r.hgetall(key_hash)
+        if not details_commande: continue
+        try:
+            id_restaurant_commande = int(details_commande.get("id_restaurant", -1))
+            prix_total = float(details_commande.get("prix_total", 0.0))
+            if id_restaurant_commande == -1: continue
+        except (ValueError, TypeError): continue
+
+        if id_restaurant_commande not in ca_par_restaurant:
+            ca_par_restaurant[id_restaurant_commande] = {'ca': 0.0, 'nb_cmd': 0}
+        ca_par_restaurant[id_restaurant_commande]['ca'] += prix_total
+        ca_par_restaurant[id_restaurant_commande]['nb_cmd'] += 1
+
+    print(f"Calcul terminé pour {len(ca_par_restaurant)} restaurant(s).")
+    return ca_par_restaurant
+
+if __name__ == "__main__":
+    date_fin_periode = datetime.now()
+    date_debut_periode = date_fin_periode - timedelta(days=30)
+    
+    print("\n--- Ajout de données de test ---")
+    commandes_test = [
+        {"annonce_id": "annonce_1001", "id_restaurant": 201, "prix_total": 26.50, "timestamp_livraison": time.time() - 86400 * 2}, 
+        {"annonce_id": "annonce_1004", "id_restaurant": 205, "prix_total": 19.00, "timestamp_livraison": time.time() - 86400 * 5}, 
+        {"annonce_id": "annonce_1005", "id_restaurant": 201, "prix_total": 15.00, "timestamp_livraison": time.time() - 86400 * 10} 
+    ]
+    r.delete(SORTED_SET_COMMANDES_TERMINEES) 
+    for cmd_test in commandes_test:
+        r.zadd(SORTED_SET_COMMANDES_TERMINEES, {cmd_test["annonce_id"]: cmd_test["timestamp_livraison"]})
+        key = f"{HASH_COMMANDE_PREFIX}{cmd_test['annonce_id']}"
+        r.hset(key, mapping={
+            "id_restaurant": str(cmd_test["id_restaurant"]),
+            "prix_total": str(cmd_test["prix_total"]),
+            "date_livraison": datetime.fromtimestamp(cmd_test["timestamp_livraison"]).isoformat()
+        })
+    print("Données de test ajoutées.")
+
+    resultats_ca = calculer_ca_restaurants_redis(date_debut_periode, date_fin_periode)
+    if resultats_ca:
+        print("\nRésultats du Chiffre d'Affaires par Restaurant:")
+        for resto_id, data in resultats_ca.items():
+            print(f"   - Restaurant ID {resto_id}: CA={data['ca']:.2f}€ ({data['nb_cmd']} commandes)")
+    else:
+        print("\nAucun résultat.")
+</code></pre></div>
+                    </div></div>
+                </div></div>
+            </div></div>
+            
+            <h3 class="subsection-title">4.2 POC 2 : MongoDB et les Change Streams</h3>
+            <div class="card bg-body-tertiary"><div class="card-body">
+                <p>Avec MongoDB, le manager insère un document `annonce` dans la base de données. Les livreurs, qui écoutent les "Change Streams" de la collection, sont notifiés de cette insertion. Ils manifestent leur intérêt en mettant à jour le document. Le manager attend, puis effectue une dernière mise à jour pour attribuer la course au livreur choisi.</p>
+                <div class="demo-area mt-4">
+                    <h4>Démonstration Live (MongoDB)</h4>
+                     <div class="mb-3 d-flex flex-wrap gap-2">
+                        <button id="start-mongo-manager" class="btn btn-uber">Lancer Manager</button>
+                        <button id="start-mongo-livreur1" class="btn btn-outline-light">Lancer Livreur 1</button>
+                        <button id="start-mongo-livreur2" class="btn btn-outline-light">Lancer Livreur 2</button>
+                        <button id="start-mongo-livreur3" class="btn btn-outline-light">Lancer Livreur 3</button>
+                        <button id="toggle-mongo-code" class="btn btn-outline-secondary ms-md-auto">Voir/Cacher Code Source</button>
+                    </div>
+                     <div class="row terminals-row" id="mongo-terminals">
+                        <div class="col-lg-6 mb-3"><div class="terminal-header">MANAGER</div><div class="terminal" id="mongo-manager-terminal"></div></div>
+                        <div class="col-lg-6"><div class="terminal-header">LIVREURS</div><div class="terminal" id="mongo-livreurs-terminal"></div></div>
+                    </div>
+                </div>
+                <div class="code-viewer-area mt-4" id="mongo-code-block"><div class="card bg-body-tertiary">
+                    <div class="card-header"><ul class="nav nav-tabs card-header-tabs">
+                        <li class="nav-item"><button class="nav-link active" data-bs-toggle="tab" data-bs-target="#manager-mongo" type="button">manager_mongo.py</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#livreur-mongo" type="button">livreur_mongo.py</button></li>
+                        <li class="nav-item"><button class="nav-link" data-bs-toggle="tab" data-bs-target="#reporting-mongo" type="button">reporting_mongo.py</button></li>
+                    </ul></div>
+                    <div class="card-body"><div class="tab-content">
+                        <div class="tab-pane fade show active" id="manager-mongo"><pre class="code-viewer"><code>#!/usr/bin/env python3
+import time
+import random
+import json
+from pathlib import Path
+from pymongo import MongoClient
+
+MONGO_URI = "mongodb://localhost:27017/"
+DB_NAME = "uber_eats_poc"
+COLLECTION_ANNONCES = "annonces"
+DELAI_ATTENTE_SECONDES = 10
+
+try:
+    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+    client.server_info()
+    db = client[DB_NAME]
+    annonces_collection = db[COLLECTION_ANNONCES]
+except Exception as e:
+    print(f"Erreur de connexion à MongoDB: {e}")
+    exit()
+
+def charger_annonces_locales():
+    annonces_file = Path(__file__).resolve().parent / "annonces.json"
+    if not annonces_file.exists(): return []
+    with annonces_file.open("r", encoding="utf-8") as f:
+        return json.load(f)
+
+def publier_annonce(annonce):
+    try:
+        annonce['statut'] = 'PUBLIEE'
+        annonce['interets_livreurs'] = []
+        annonce['livreur_attribue'] = None
+        # Utilisation de replace_one avec upsert=True pour insérer ou remplacer si l'ID existe déjà
+        annonces_collection.replace_one({'_id': annonce['_id']}, annonce, upsert=True)
+        print(f"\n[MANAGER] Annonce '{annonce['_id']}' publiée/mise à jour.")
+        return annonce['_id']
+    except Exception as e:
+         print(f"Erreur lors de la publication de l'annonce {annonce.get('_id', 'inconnu')} : {e}")
+         return None
+
+
+def attribuer_course(annonce_id):
+    print(f"[MANAGER] Attente de {DELAI_ATTENTE_SECONDES}s...")
+    time.sleep(DELAI_ATTENTE_SECONDES)
+    annonce = annonces_collection.find_one({"_id": annonce_id})
+    # Vérifie aussi que l'annonce est toujours au statut PUBLIEE avant d'attribuer
+    if not annonce or annonce.get('statut') != 'PUBLIEE' or not annonce.get('interets_livreurs'):
+        if annonce and annonce.get('statut') != 'PUBLIEE':
+             print(f"[MANAGER] Annonce '{annonce_id}' n'est plus en attente d'attribution (statut: {annonce.get('statut')}).")
+        else:
+             print(f"[MANAGER] Personne n'a répondu à '{annonce_id}' ou l'annonce est introuvable.")
+             # On met à jour seulement si elle existe et est encore PUBLIEE
+             annonces_collection.update_one({"_id": annonce_id, "statut": "PUBLIEE"}, {"$set": {"statut": "ANNULEE"}})
+        return
+        
+    # Sélectionne le livreur avec le timestamp le plus bas
+    livreur_gagnant = min(annonce['interets_livreurs'], key=lambda x: x['timestamp_interet'])
+    print(f"[MANAGER] Livreur '{livreur_gagnant['nom_livreur']}' choisi pour '{annonce_id}'.")
+    # Mise à jour atomique: on vérifie encore que le statut est PUBLIEE au moment de l'update
+    result = annonces_collection.update_one(
+        {"_id": annonce_id, "statut": "PUBLIEE"}, 
+        {"$set": {
+            "statut": "ATTRIBUEE",
+            "livreur_attribue": {
+                "id_livreur": livreur_gagnant['id_livreur'],
+                "nom_livreur": livreur_gagnant['nom_livreur']
+            }
+        }}
+    )
+    if result.modified_count == 0:
+        print(f"[MANAGER] Conflit: L'annonce '{annonce_id}' a été modifiée pendant l'attente.")
+
+
+if __name__ == "__main__":
+    annonces_a_publier = charger_annonces_locales()
+    if not annonces_a_publier: exit()
+    print("--- Démarrage du Manager Bot (MongoDB) ---")
+    annonces_collection.delete_many({}) # Nettoyage initial
+    print("Collection 'annonces' nettoyée.")
+    try:
+        while True:
+            annonce_a_publier = random.choice(annonces_a_publier)
+            # S'assurer que l'annonce a un _id avant de publier
+            if '_id' not in annonce_a_publier: 
+                print("[ERREUR] Annonce sans _id trouvée dans annonces.json")
+                continue
+            annonce_id = publier_annonce(annonce_a_publier.copy()) # Utiliser .copy() pour éviter modif originale
+            if annonce_id: 
+                attribuer_course(annonce_id)
+            print("\n--- Prochaine annonce dans 15 secondes ---")
+            time.sleep(15)
+    except KeyboardInterrupt:
+        print("\nArrêt du Manager.")
+    finally:
+        client.close()
+</code></pre></div>
+                        <div class="tab-pane fade" id="livreur-mongo"><pre class="code-viewer"><code>#!/usr/bin/env python3
+import time
+import random
+from pymongo import MongoClient
+from pymongo.errors import OperationFailure
+
+MONGO_URI = "mongodb://localhost:27017/?replicaSet=rs0"
+DB_NAME = "uber_eats_poc"
+COLLECTION_ANNONCES = "annonces"
+LIVREUR_INFO = {
+    "id_livreur": f'livreur_{random.randint(100, 999)}',
+    "nom_livreur": random.choice(["Karim", "Laura", "David", "Fatima"])
+}
+
+try:
+    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+    client.server_info()
+    db = client[DB_NAME]
+    annonces_collection = db[COLLECTION_ANNONCES]
+except Exception as e:
+    print(f"Erreur de connexion: {e}")
+    exit()
+
+def manifester_interet(annonce_id):
+    print(f"{LIVREUR_INFO['nom_livreur']} est intéressé par '{annonce_id}'.")
+    annonces_collection.update_one(
+        {"_id": annonce_id, "statut": "PUBLIEE"},
+        {"$addToSet": { # Evite d'ajouter si déjà présent
+            "interets_livreurs": {**LIVREUR_INFO, "timestamp_interet": time.time()}
+        }}
+    )
+
+def ecouter_les_annonces():
+    # Pipeline pour ne recevoir que les insertions pertinentes et les mises à jour d'attribution
+    pipeline = [{
+        '$match': {
+            'operationType': {'$in': ['insert', 'update']},
+            '$or': [
+                # Nouvelle annonce publiée
+                { 'operationType': 'insert', 'fullDocument.statut': 'PUBLIEE' }, 
+                # Annonce attribuée (on vérifie que livreur_attribue est mis à jour)
+                { 'operationType': 'update', 'updateDescription.updatedFields.livreur_attribue': {'$exists': True} },
+                 # Annonce annulée par le manager
+                { 'operationType': 'update', 'updateDescription.updatedFields.statut': 'ANNULEE' } 
+            ]
+        }
+    }]
+    print(f"{LIVREUR_INFO['nom_livreur']} ({LIVREUR_INFO['id_livreur']}) est en ligne...")
+    try:
+        # Utilisation de full_document='updateLookup' pour avoir le document complet après mise à jour
+        with annonces_collection.watch(pipeline, full_document='updateLookup') as stream:
+            for change in stream:
+                if change['operationType'] == 'insert':
+                    annonce = change['fullDocument']
+                    print(f"\nNOUVELLE ANNONCE : '{annonce['_id']}' pour {annonce['retribution_livreur']}€.")
+                    if random.random() < 0.8:
+                        manifester_interet(annonce['_id'])
+                    else:
+                        print(f"{LIVREUR_INFO['nom_livreur']} ignore cette annonce.")
+                
+                elif change['operationType'] == 'update':
+                    annonce_id = change['documentKey']['_id']
+                    updated_fields = change['updateDescription']['updatedFields']
+                    
+                    # Cas: Annonce attribuée
+                    if 'livreur_attribue' in updated_fields:
+                        annonce_apres_update = annonces_collection.find_one({'_id': annonce_id}) # Re-fetch pour être sûr
+                        if annonce_apres_update and annonce_apres_update.get('livreur_attribue'):
+                            livreur_attribue = annonce_apres_update['livreur_attribue']
+                            if livreur_attribue['id_livreur'] == LIVREUR_INFO['id_livreur']:
+                                print(f"GAGNÉ ! {LIVREUR_INFO['nom_livreur']} a obtenu la course '{annonce_id}'!")
+                            else:
+                                print(f"PERDU... La course '{annonce_id}' a été prise par '{livreur_attribue['nom_livreur']}'.")
+                                
+                    # Cas: Annonce annulée
+                    elif updated_fields.get('statut') == 'ANNULEE':
+                         print(f"ANNULÉE... La course '{annonce_id}' n'a pas trouvé de livreur ou a été annulée.")
+
+                        
+    except OperationFailure as e:
+        print(f"\nERREUR FATALE: Les Change Streams nécessitent un Replica Set. {e}")
+    except Exception as e:
+        print(f"Erreur inattendue dans le Change Stream : {e}")
+
+
+if __name__ == "__main__":
+    try:
+        ecouter_les_annonces()
+    except KeyboardInterrupt:
+        print(f"\n{LIVREUR_INFO['nom_livreur']} se déconnecte.")
+    finally:
+        client.close()
+</code></pre></div>
+                         <div class="tab-pane fade" id="reporting-mongo"><pre class="code-viewer"><code>#!/usr/bin/env python3
+from pymongo import MongoClient
+from datetime import datetime, timedelta
+import time 
+
+MONGO_URI = "mongodb://localhost:27017/" 
+DB_NAME = "uber_eats_poc"
+COLLECTION_ANNONCES = "annonces"
+
+try:
+    client = MongoClient(MONGO_URI, serverSelectionTimeoutMS=5000)
+    client.server_info() 
+    db = client[DB_NAME]
+    annonces_collection = db[COLLECTION_ANNONCES]
+    print("Connexion à MongoDB réussie.")
+except Exception as e:
+    print(f"Erreur de connexion à MongoDB: {e}")
+    exit()
+
+def calculer_ca_restaurants_mongo(date_debut, date_fin):
+    print(f"\nCalcul du CA par restaurant entre {date_debut.date()} et {date_fin.date()}...")
+    date_debut_str = date_debut.strftime('%Y-%m-%d %H:%M:%S')
+    date_fin_str = date_fin.strftime('%Y-%m-%d %H:%M:%S')
+    
+    pipeline = [
+        {
+            '$match': {
+                'statut': 'LIVREE', 
+                'date_creation': { 
+                    '$gte': date_debut_str, 
+                    '$lte': date_fin_str
+                }
+            }
+        },
+        {
+            '$group': {
+                '_id': '$restaurant.id_restaurant', 
+                'nom_restaurant': { '$first': '$restaurant.nom_restaurant' }, 
+                'chiffre_affaires_total': { '$sum': '$prix_total' }, 
+                'nombre_commandes': { '$sum': 1 } 
+            }
+        },
+        { '$sort': { '_id': 1 } }
+    ]
+
+    resultats = list(annonces_collection.aggregate(pipeline))
+
+    if not resultats:
+        print("Aucune commande livrée trouvée sur cette période.")
+        return []
+        
+    print(f"Calcul terminé pour {len(resultats)} restaurant(s).")
+    return resultats
+
+if __name__ == "__main__":
+    date_fin_periode = datetime.now()
+    date_debut_periode = date_fin_periode - timedelta(days=30)
+    
+    print("\n--- Ajout/Mise à jour de données de test ---")
+    annonces_collection.update_one(
+        {"_id": "annonce_1001"},
+        {"$set": {"statut": "LIVREE", "restaurant.id_restaurant": 201, "restaurant.nom_restaurant": "Le Burger de la Cité", "prix_total": 26.50, "date_creation": (datetime.now() - timedelta(days=2)).strftime('%Y-%m-%d %H:%M:%S')}},
+        upsert=True 
+    )
+    annonces_collection.update_one(
+        {"_id": "annonce_1005"},
+        {"$set": {"statut": "LIVREE", "restaurant.id_restaurant": 201, "restaurant.nom_restaurant": "Le Burger de la Cité", "prix_total": 15.00, "date_creation": (datetime.now() - timedelta(days=10)).strftime('%Y-%m-%d %H:%M:%S')}},
+        upsert=True
+    )
+    annonces_collection.update_one(
+        {"_id": "annonce_1004"},
+        {"$set": {"statut": "LIVREE", "restaurant.id_restaurant": 205, "restaurant.nom_restaurant": "Bistrot Victoires", "prix_total": 19.00, "date_creation": (datetime.now() - timedelta(days=5)).strftime('%Y-%m-%d %H:%M:%S')}},
+        upsert=True
+    )
+    print("Données de test ajoutées/mises à jour.")
+
+    resultats_ca = calculer_ca_restaurants_mongo(date_debut_periode, date_fin_periode)
+
+    if resultats_ca:
+        print("\nRésultats du Chiffre d'Affaires par Restaurant:")
+        for resto_data in resultats_ca:
+            resto_id = resto_data['_id']
+            resto_nom = resto_data.get('nom_restaurant', f"ID {resto_id}") 
+            ca_total = resto_data.get('chiffre_affaires_total', 0.0)
+            nb_cmd = resto_data.get('nombre_commandes', 0)
+            print(f"   - Restaurant '{resto_nom}' (ID: {resto_id}):")
+            print(f"      - Chiffre d'affaires total : {ca_total:.2f}€")
+            print(f"      - Nombre de commandes : {nb_cmd}")
+    else:
+        print("\nAucun résultat de chiffre d'affaires à afficher.")
+    
+    client.close()
+</code></pre></div>
+                    </div></div>
+                </div></div>
+             </div></div>
+        </section>
+        <hr/>
+
+        <section id="new-features-comparison" class="my-5 pt-4">
+            <h2 class="section-title">4.3 Comparaison via Nouvelle Fonctionnalité : Attribution au Livreur le Plus Proche</h2>
+            <div class="card bg-body-tertiary">
+                <div class="card-body">
+                    <p>Pour approfondir ma comparaison, j'ai imaginé l'ajout d'une fonctionnalité assez courante dans ce type d'application : attribuer automatiquement la course au livreur disponible qui se trouve le plus près du restaurant.</p>
+                    
+                    <h5 class="mt-4">Implémentation avec Redis</h5>
+                    <p>Pour réaliser cela avec Redis, j'aurais besoin que mes scripts interagissent de la manière suivante :</p>
+                    <ul>
+                        <li><strong>Le script <span class="field-name">livreur_redis.py</span></strong> devrait être modifié pour envoyer régulièrement sa position géographique au système pendant qu'il est en ligne. Redis pourrait stocker cette information, par exemple en associant l'ID du livreur à ses coordonnées.</li>
+                        <li><strong>Le script <span class="field-name">manager_redis.py</span></strong>, au moment de publier une nouvelle annonce, devrait effectuer plusieurs étapes : récupérer les coordonnées du restaurant, demander à Redis les positions actuelles de tous les livreurs en ligne, calculer (probablement dans le code Python lui-même) la distance entre le restaurant et chaque livreur, identifier le plus proche, et enfin lui envoyer une notification via le canal approprié pour lui attribuer la course. Redis possède des structures de données spécifiques pour le géospatial qui pourraient optimiser la recherche du plus proche, mais l'intégration de ces positions et le calcul resteraient une part importante de la logique du manager.</li>
+                    </ul>
+
+                    <h5 class="mt-4">Implémentation avec MongoDB</h5>
+                    <p>Avec MongoDB, l'approche serait différente et s'appuierait sur les capacités de requêtage de la base de données :</p>
+                     <ul>
+                        <li><strong>Le script <span class="field-name">livreur_mongo.py</span></strong> devrait mettre à jour un champ contenant sa position géographique directement dans son document principal (dans une collection <span class="field-name">livreurs</span> par exemple), en plus de son statut.</li>
+                        <li><strong>Le script <span class="field-name">manager_mongo.py</span></strong>, lorsqu'il publie une annonce, pourrait alors effectuer une seule requête à MongoDB. Grâce aux index et opérateurs géospatiaux de MongoDB, cette requête pourrait directement demander "trouve-moi le livreur dont le statut est 'online' et dont le champ de position est le plus proche des coordonnées du restaurant". La base de données renverrait directement le bon livreur. Ensuite, le manager mettrait à jour le document de l'<span class="field-name">annonce</span> pour y inscrire le livreur choisi, déclenchant une notification via les Change Streams comme dans mon POC actuel.</li>
+                    </ul>
+
+                    <h5 class="mt-4">Discussion</h5>
+                    <p>Pour cette fonctionnalité précise, j'ai l'impression que MongoDB serait plus direct à implémenter. Ses fonctions de recherche géospatiale intégrées permettent au script <span class="field-name">manager_mongo.py</span> de déléguer le travail complexe de recherche du plus proche directement à la base de données avec une seule requête.</p>
+                    <p>Avec Redis, c'est tout à fait réalisable et probablement très rapide, mais cela demanderait plus de travail dans le script <span class="field-name">manager_redis.py</span> pour récupérer les données, faire les calculs de distance, ou alors d'utiliser des structures de données Redis plus avancées (comme les sets géospatiaux) qui demandent une gestion spécifique. Cela montre bien que pour des requêtes qui vont au-delà de la simple récupération clé-valeur ou du Pub/Sub, MongoDB offre une solution plus intégrée, tandis que Redis demande une approche plus centrée sur le choix de la bonne structure de données et potentiellement plus de logique dans l'application.</p>
+                </div>
+            </div>
+        </section>
+        <hr/>
+
+        <section id="reporting-comparison" class="my-5 pt-4">
+            <h2 class="section-title">4.4 Comparaison via Fonctionnalité Classique : Calcul du Chiffre d'Affaires</h2>
+             <div class="card bg-body-tertiary">
+                <div class="card-body">
+                     <p>Pour évaluer comment chaque système gère les tâches classiques d'une base de données, comme l'ajout, la suppression ou la consultation, j'ai choisi d'implémenter une fonctionnalité de reporting : calculer le chiffre d'affaires (CA) total réalisé par chaque restaurant sur une période donnée (par exemple, le dernier mois).</p>
+
+                    <h5 class="mt-4">Implémentation avec Redis (Persistant)</h5>
+                    <p>Pour calculer le CA avec Redis, mon script <span class="field-name">reporting_redis.py</span> doit suivre plusieurs étapes. D'abord, il faut que j'aie mis en place un moyen de stocker les informations des commandes terminées de façon durable (en activant la persistance sur Redis). Je dois aussi structurer ces données pour pouvoir les retrouver facilement par date.</p>
+                    <p>Le script commence par demander à Redis la liste de toutes les commandes qui ont été terminées pendant la période choisie. Ensuite, pour chaque commande de cette liste, il doit redemander à Redis les détails spécifiques, notamment l'identifiant du restaurant et le prix total de la commande. Une fois qu'il a récupéré toutes ces informations, c'est le script Python lui-même qui fait le travail de trier les commandes par restaurant, d'additionner les prix pour obtenir le CA de chacun, et de compter combien de commandes chaque restaurant a traité. C'est fonctionnel, mais ça demande d'avoir bien pensé à la structure des données dans Redis à l'avance et une bonne partie du calcul se fait dans mon code.</p>
+
+                    <h5 class="mt-4">Implémentation avec MongoDB</h5>
+                    <p>Avec MongoDB, le processus est plus direct grâce à ses outils intégrés. Mon script <span class="field-name">reporting_mongo.py</span> utilise le "framework d'agrégation" de MongoDB.</p>
+                    <p>En gros, je décris à MongoDB ce que je veux calculer en une seule grosse requête. Je lui dis : "Prends toutes les annonces qui ont le statut 'LIVREE' et dont la date de création est dans ma période. Ensuite, regroupe-les par l'identifiant du restaurant. Pour chaque groupe (chaque restaurant), calcule la somme de tous les champs <span class="field-name">prix_total</span> et compte combien il y a de commandes." MongoDB fait tout ce travail de filtrage, de regroupement et de calcul directement dans la base de données et me renvoie le résultat final, prêt à être affiché. C'est très concis et puissant.</p>
+
+                    <h5 class="mt-4">Discussion</h5>
+                    <p>Cette fonctionnalité de reporting montre bien que MongoDB est plus à l'aise pour les requêtes analytiques et les opérations de base de données traditionnelles. Son système d'agrégation est fait pour ça. J'ai vu que je pouvais faire des calculs complexes directement dans la requête.</p>
+                    <p>Avec Redis, même en activant la persistance, j'ai dû réfléchir davantage à comment organiser mes données (quels types de clés utiliser, etc.) pour pouvoir faire ce calcul efficacement, et une partie importante du travail d'agrégation reste à faire dans mon script Python. Ça confirme que Redis est génial pour le cache et la communication ultra-rapide, mais moins naturellement adapté pour des analyses de données complexes que MongoDB.</p>
+                </div>
+            </div>
+        </section>
+        <hr/>
+
+        <section id="conclusion" class="my-5 pt-4">
+            <h2 class="section-title">5. Conclusion</h2>
+            <div class="card bg-body-tertiary"><div class="card-body">
+                <p>Au bout de cette analyse, ma première conclusion était assez claire : pour diffuser des infos instantanément, j'ai vu que Redis était plus rapide que MongoDB. Son système Pub/Sub et sa mémoire vive sont faits pour ça. De l'autre côté, j'ai trouvé que MongoDB était excellent pour stocker et retrouver des informations sur le long terme, ce qui est super important pour suivre l'activité.</p>
+                <p>Mais en y réfléchissant, je me suis dit que le principal défaut de Redis, le fait qu'il ne garde pas les données, n'est pas une fatalité. En fait, je peux totalement corriger ça. Il suffit d'activer une option de persistance comme AOF (Append Only File), qui enregistre chaque opération sur le disque. Avec ça, je ne perds plus rien si le serveur redémarre, et mes données deviennent aussi durables que sur MongoDB.</p>
+                <p>Je peux même aller plus loin. Pour la fiabilité, je peux monter Redis en mode Cluster. Un cluster, ce n'est pas juste pour répartir la charge ; ça garantit aussi que le service ne tombe jamais. Si un serveur principal lâche, un autre prend le relais automatiquement. Pour moi, cette architecture est tout aussi solide qu'un Replica Set de MongoDB.</p>
+                <p>En pensant à cette configuration, je réalise qu'un cluster Redis avec la persistance activée devient un concurrent très sérieux. Il garderait sa vitesse incroyable pour envoyer les annonces et recevoir les réponses, tout en s'assurant que tout est bien sauvegardé. Pour mon projet où tout se joue sur la rapidité de décision en quelques secondes, je pense que cette solution pourrait même être plus performante qu'une architecture MongoDB, qui est par nature un peu plus lente à chaque écriture sur le disque.</p>
+                <div class="alert alert-success mt-4" role="alert">
+                    <h4 class="alert-heading">Ma solution optimale pour l'acheteur</h4>
+                    <p>Au final, même si une solution hybride est une bonne idée, je pense maintenant qu'un cluster Redis bien configuré avec la persistance activée pourrait gérer tout mon projet de manière super efficace. J'aurais le meilleur des deux mondes : la vitesse dingue du temps réel et la sécurité de la sauvegarde. Pour ce POC précis, je suis convaincu que cette solution "tout-en-un" avec Redis serait non seulement possible, mais probablement la meilleure pour un système comme celui d'Uber Eats .</p>
+                </div>
+            </div></div>
+        </section>
+    </div> 
+    <footer class="footer mt-auto py-3 bg-body-tertiary border-top"><div class="container text-center"><span class="text-muted">Rapport de projet réalisé par <strong>Mohamed Kosbar</strong></span></div></footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const themeSwitcher = document.getElementById('theme-switcher');
+        const themeIcon = document.querySelector('label[for="theme-switcher"] i');
+        themeSwitcher.addEventListener('change', () => {
+            const theme = themeSwitcher.checked ? 'dark' : 'light';
+            document.documentElement.setAttribute('data-bs-theme', theme);
+            themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+        });
+
+        const ctx = document.getElementById('comparisonChart').getContext('2d');
+        const comparisonChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Latence de communication', 'Persistance des données', 'Complexité', 'Traçabilité / Historique'],
+                datasets: [
+                    { label: 'Redis (avec persistance)', data: [9, 7, 7, 7], backgroundColor: 'rgba(255, 99, 132, 0.7)' }, 
+                    { label: 'MongoDB', data: [7, 9, 6, 9], backgroundColor: 'rgba(75, 192, 192, 0.7)' }
+                ]
+            },
+            options: { indexAxis: 'y', scales: { x: { beginAtZero: true, max: 10 } }, plugins: { title: { display: true, text: 'Évaluation des Technologies (Score sur 10)', font: { size: 16 } } } }
+        });
+
+        function addToTerminal(terminalId, message, className = '') {
+            const terminal = document.getElementById(terminalId);
+            if (!terminal) return;
+            const line = document.createElement('div');
+            line.className = `terminal-line ${className}`;
+            line.textContent = `[${new Date().toLocaleTimeString()}] ${message}`;
+            terminal.appendChild(line);
+            terminal.scrollTop = terminal.scrollHeight;
+        }
+        function sleep(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
+        
+        // --- Code Source Toggle ---
+        document.getElementById('toggle-redis-code').addEventListener('click', () => {
+             const codeBlock = document.getElementById('redis-code-block');
+             codeBlock.style.display = codeBlock.style.display === 'none' ? 'block' : 'none';
+        });
+         document.getElementById('toggle-mongo-code').addEventListener('click', () => {
+             const codeBlock = document.getElementById('mongo-code-block');
+             codeBlock.style.display = codeBlock.style.display === 'none' ? 'block' : 'none';
+        });
+
+        // --- Simulations ---
+        document.getElementById('start-redis-manager').addEventListener('click', async function() {
+            document.getElementById('redis-terminals').style.display = 'flex';
+            this.disabled = true;
+            addToTerminal('redis-manager-terminal', "Démarrage manager Redis...", 'info');
+            const courseId = `annonce_R-${Math.floor(1000 + Math.random() * 9000)}`;
+            await sleep(500);
+            addToTerminal('redis-manager-terminal', `[MANAGER] PUBLISH sur 'annonces_channel': ${courseId}`, 'manager');
+            addToTerminal('redis-livreurs-terminal', '[INFO] Nouvelle annonce reçue !', 'info');
+            await sleep(10000); 
+            addToTerminal('redis-manager-terminal', "[MANAGER] Vérification des intérêts...", 'info');
+            const reponses = Array.from(document.querySelectorAll('[id^="start-redis-livreur"]')).filter(btn => btn.dataset.running === 'true').map(btn => ({ id: `Livreur ${btn.id.slice(-1)}` }));
+            if (reponses.length > 0) {
+                const winner = reponses[Math.floor(Math.random() * reponses.length)].id;
+                addToTerminal('redis-manager-terminal', `[MANAGER] Livreur choisi: ${winner}. Notification...`, 'manager');
+                addToTerminal('redis-livreurs-terminal', `[${winner}] GAGNÉ ! J'ai obtenu la course ${courseId} !`, 'success');
+                reponses.filter(r => r.id !== winner).forEach(loser => {
+                    addToTerminal('redis-livreurs-terminal', `[${loser.id}] PERDU... La course a été prise.`, 'error');
+                });
+            } else { addToTerminal('redis-manager-terminal', "[MANAGER] Aucun livreur n'a répondu.", 'error'); }
+            this.disabled = false;
+        });
+        document.querySelectorAll('[id^="start-redis-livreur"]').forEach((btn, i) => {
+             btn.addEventListener('click', function() {
+                this.dataset.running = this.dataset.running === 'true' ? 'false' : 'true';
+                this.classList.toggle('btn-uber'); this.classList.toggle('btn-outline-light');
+                addToTerminal('redis-livreurs-terminal', `Livreur ${i + 1} est ${this.dataset.running === 'true' ? 'en ligne' : 'hors ligne'}.`, `livreur${i+1}`);
+            });
+        });
+
+        document.getElementById('start-mongo-manager').addEventListener('click', async function() {
+            document.getElementById('mongo-terminals').style.display = 'flex';
+            this.disabled = true;
+            addToTerminal('mongo-manager-terminal', "Démarrage manager MongoDB...", 'info');
+            const courseId = `annonce_M-${Math.floor(1000 + Math.random() * 9000)}`;
+            await sleep(500);
+            addToTerminal('mongo-manager-terminal', `[MANAGER] INSERT dans 'annonces': ${courseId}`, 'manager');
+            addToTerminal('mongo-livreurs-terminal', "[INFO] Change Stream a détecté un 'insert' !", 'info');
+            const participants = Array.from(document.querySelectorAll('[id^="start-mongo-livreur"]')).filter(btn => btn.dataset.running === 'true').map(btn => `Livreur ${btn.id.slice(-1)}`);
+            await sleep(10000);
+            addToTerminal('mongo-manager-terminal', "[MANAGER] Sélection du livreur...", 'info');
+            if (participants.length > 0) {
+                const winner = participants[Math.floor(Math.random() * participants.length)];
+                addToTerminal('mongo-manager-terminal', `[MANAGER] UPDATE ${courseId}: {livreur_attribue: '${winner}'}`, 'manager');
+                addToTerminal('mongo-livreurs-terminal', "[INFO] Change Stream a détecté un 'update'.", 'info');
+                participants.forEach(p => {
+                    if (p === winner) {
+                        addToTerminal('mongo-livreurs-terminal', `[${p}] GAGNÉ ! J'ai été sélectionné !`, 'success');
+                    } else {
+                        addToTerminal('mongo-livreurs-terminal', `[${p}] PERDU... La course a été prise par un autre.`, 'error');
+                    }
+                });
+            } else { addToTerminal('mongo-manager-terminal', "[MANAGER] Aucun livreur n'a répondu.", 'error'); }
+            this.disabled = false;
+        });
+        document.querySelectorAll('[id^="start-mongo-livreur"]').forEach((btn, i) => {
+             btn.addEventListener('click', function() {
+                this.dataset.running = this.dataset.running === 'true' ? 'false' : 'true';
+                this.classList.toggle('btn-uber'); this.classList.toggle('btn-outline-light');
+                addToTerminal('mongo-livreurs-terminal', `Livreur ${i + 1} est ${this.dataset.running === 'true' ? 'en ligne' : 'hors ligne'}.`, `livreur${i+1}`);
+            });
+        });
+        
+        document.querySelectorAll('.copy-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                const pre = button.closest('.code-container')?.querySelector('pre code') || button.previousElementSibling?.querySelector('code');
+                 if (pre) {
+                    navigator.clipboard.writeText(pre.innerText).then(() => {
+                        const originalIcon = button.innerHTML;
+                        button.innerHTML = `<i class="fas fa-check"></i>`;
+                        setTimeout(() => { button.innerHTML = originalIcon; }, 1500);
+                    });
+                 }
+            });
+        });
+    });
+    </script>
+</body>
+</html>

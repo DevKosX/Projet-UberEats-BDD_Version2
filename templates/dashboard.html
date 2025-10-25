@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Livreur</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --uber-green: #06C167;
+            --light-bg: #f8f9fa;
+            --dark-bg: #0d1117;
+            --dark-card: #161b22;
+            --dark-border: #30363d;
+        }
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: var(--light-bg);
+        }
+        .navbar-brand .logo {
+            color: var(--uber-green);
+            font-weight: 700;
+        }
+        .stat-card {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            background-color: #ffffff;
+            padding: 1.5rem;
+            text-align: center;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .stat-card .icon {
+            font-size: 2.5rem;
+            color: var(--uber-green);
+            margin-bottom: 1rem;
+        }
+        .stat-card h5 {
+            color: #6c757d;
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+        .stat-card .stat-value {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #212529;
+        }
+        
+        /* Mode Sombre */
+        [data-bs-theme="dark"] body {
+            background-color: var(--dark-bg);
+        }
+        [data-bs-theme="dark"] .stat-card {
+            background-color: var(--dark-card);
+            border-color: var(--dark-border);
+        }
+        [data-bs-theme="dark"] .stat-card .stat-value {
+            color: #e6edf3;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar bg-body-tertiary border-bottom sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fa-solid fa-chart-line" style="color: var(--uber-green);"></i>
+                <span class="logo ms-2">Dashboard Livreur</span>
+            </a>
+            <div class="d-flex align-items-center">
+                 <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" role="switch" id="theme-switcher">
+                    <label class="form-check-label" for="theme-switcher"><i class="fas fa-moon"></i></label>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                
+                <div class="card shadow-sm mb-4" style="border: 1px solid var(--github-border); background-color: var(--github-card-bg);">
+                    <div class="card-body">
+                        <h5 class="card-title">Sélectionner un Livreur</h5>
+                        <p class="small text-secondary">Choisir un livreur pour afficher ses statistiques du jour.</p>
+                        <form method="GET" action="/dashboard" class="d-flex">
+                            <select class="form-select" name="livreurId" onchange="this.form.submit()">
+                                <option value="">Choisir un livreur...</option>
+                                {% for livreur in allLivreurs %}
+                                    <option 
+                                        value="{{ livreur.id_livreur }}" 
+                                        {% if livreur.id_livreur|string == selectedLivreurId %}selected{% endif %}>
+                                        {{ livreur.nom_livreur }} (ID: {{ livreur.id_livreur }})
+                                    </option>
+                                {% endfor %}
+                            </select>
+                        </form>
+                    </div>
+                </div>
+
+                {% if stats %}
+                <div>
+                    <h2 class="mb-4">
+                        Tableau de bord de <span class="text-success">{{ stats.nom_livreur }}</span>
+                    </h2>
+                    <div class="row">
+                        <div class="col-md-6 mb-4">
+                            <div class="stat-card shadow-sm">
+                                <div class="icon"><i class="fas fa-euro-sign"></i></div>
+                                <h5>Gains du Jour</h5>
+                                <div class="stat-value">{{ "%.2f"|format(stats.gains_du_jour) }} €</div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-6 mb-4">
+                            <div class="stat-card shadow-sm">
+                                <div class="icon"><i class="fas fa-motorcycle"></i></div>
+                                <h5>Courses Terminées</h5>
+                                <div class="stat-value">{{ stats.courses_terminees }}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                
+                {% if not stats and selectedLivreurId %}
+                <div class="text-center text-secondary mt-5">
+                    <p>Aucune statistique trouvée pour ce livreur aujourd'hui.</p>
+                </div>
+                {% elif not stats %}
+                 <div class="text-center text-secondary mt-5">
+                    <p>Veuillez sélectionner un livreur pour voir ses statistiques.</p>
+                </div>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+    // Ce script JavaScript reste le même, il gère le mode sombre
+    document.addEventListener('DOMContentLoaded', function () {
+        const themeSwitcher = document.getElementById('theme-switcher');
+        const themeIcon = document.querySelector('label[for="theme-switcher"] i');
+        
+        const applyTheme = (theme) => {
+            document.documentElement.setAttribute('data-bs-theme', theme);
+            themeIcon.className = theme === 'dark' ? 'fas fa-moon' : 'fas fa-sun';
+            themeSwitcher.checked = theme === 'dark';
+        };
+
+        themeSwitcher.addEventListener('change', () => {
+            const theme = themeSwitcher.checked ? 'dark' : 'light';
+            applyTheme(theme);
+            localStorage.setItem('theme', theme); 
+        });
+
+        const savedTheme = localStorage.getItem('theme') || 'light'; 
+        applyTheme(savedTheme);
+        themeSwitcher.checked = savedTheme === 'dark';
+    });
+    </script>
+</body>
+</html>

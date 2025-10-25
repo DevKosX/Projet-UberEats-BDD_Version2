@@ -1,0 +1,1044 @@
+[
+  {
+    "_id": "annonce_1",
+    "statut": "annulée",
+    "date_creation": "2025-01-18 02:55:06",
+    "client": {
+      "id_client": 13,
+      "nom_client": "Gilles Charrier",
+      "ville_client": "Boulogne-Billancourt",
+      "email": "zoe89@brunet.com",
+      "date_creation": "2025-02-03 20:32:43"
+    },
+    "restaurant": {
+      "id_restaurant": 6,
+      "nom_restaurant": "Letellier SARL",
+      "ville_restaurant": "Paris",
+      "note_restaurant": 4.0,
+      "type_cuisine": "Libanais"
+    },
+    "publication_par": {
+      "id_manager": 2,
+      "nom_manager": "Capucine Girard",
+      "type_manager": "logistique"
+    },
+    "details_commande": [
+      {
+        "id_plat": 13,
+        "nom_plat": "Faible",
+        "quantite": 2,
+        "prix": 8.78
+      },
+      {
+        "id_plat": 4,
+        "nom_plat": "Aspect",
+        "quantite": 1,
+        "prix": 9.74
+      }
+    ],
+    "prix_total": 47.08,
+    "retribution_livreur": 12.56,
+    "interets_livreurs": [
+      {
+        "id_livreur": 4,
+        "nom_livreur": "Madeleine Raymond-Guibert",
+        "timestamp_interet": "2025-04-11 08:01:08"
+      },
+      {
+        "id_livreur": 2,
+        "nom_livreur": "Julie de la Lévêque",
+        "timestamp_interet": "2025-08-04 20:20:52"
+      }
+    ],
+    "livreur_attribue": {
+      "id_livreur": 3,
+      "nom_livreur": "Julien Jacquet-Barbier",
+      "statut_livreur": "inactif",
+      "vehicule": "vélo",
+      "date_inscription": "2023-09-23 09:24:34"
+    }
+  },
+  {
+    "_id": "annonce_2",
+    "statut": "annulée",
+    "date_creation": "2025-08-15 05:22:57",
+    "client": {
+      "id_client": 4,
+      "nom_client": "Laurent Pereira",
+      "ville_client": "Versailles",
+      "email": "susan07@yahoo.fr",
+      "date_creation": "2023-03-22 01:34:09"
+    },
+    "restaurant": {
+      "id_restaurant": 3,
+      "nom_restaurant": "Briand",
+      "ville_restaurant": "Créteil",
+      "note_restaurant": 2.7,
+      "type_cuisine": "Indien"
+    },
+    "publication_par": {
+      "id_manager": 2,
+      "nom_manager": "Capucine Girard",
+      "type_manager": "logistique"
+    },
+    "details_commande": [
+      {
+        "id_plat": 3,
+        "nom_plat": "Savoir",
+        "quantite": 3,
+        "prix": 24.27
+      },
+      {
+        "id_plat": 10,
+        "nom_plat": "Respecter",
+        "quantite": 2,
+        "prix": 22.1
+      },
+      {
+        "id_plat": 29,
+        "nom_plat": "Sombre",
+        "quantite": 2,
+        "prix": 12.55
+      }
+    ],
+    "prix_total": 19.13,
+    "retribution_livreur": 8.82,
+    "interets_livreurs": [],
+    "livreur_attribue": {
+      "id_livreur": 7,
+      "nom_livreur": "Robert Meyer",
+      "statut_livreur": "en pause",
+      "vehicule": "voiture",
+      "date_inscription": "2022-04-26 03:45:17"
+    }
+  },
+  {
+    "_id": "annonce_3",
+    "statut": "en attente",
+    "date_creation": "2025-03-05 02:37:34",
+    "client": {
+      "id_client": 15,
+      "nom_client": "Antoinette Samson",
+      "ville_client": "Créteil",
+      "email": "margauxollivier@aubry.fr",
+      "date_creation": "2021-10-20 00:49:06"
+    },
+    "restaurant": {
+      "id_restaurant": 9,
+      "nom_restaurant": "Valentin SA",
+      "ville_restaurant": "Boulogne-Billancourt",
+      "note_restaurant": 4.0,
+      "type_cuisine": "Italien"
+    },
+    "publication_par": {
+      "id_manager": 3,
+      "nom_manager": "Agathe Morin-Chrétien",
+      "type_manager": "support"
+    },
+    "details_commande": [
+      {
+        "id_plat": 22,
+        "nom_plat": "Taire",
+        "quantite": 1,
+        "prix": 17.08
+      },
+      {
+        "id_plat": 1,
+        "nom_plat": "Étendue",
+        "quantite": 2,
+        "prix": 19.87
+      },
+      {
+        "id_plat": 29,
+        "nom_plat": "Sombre",
+        "quantite": 1,
+        "prix": 12.55
+      }
+    ],
+    "prix_total": 59.22,
+    "retribution_livreur": 6.15,
+    "interets_livreurs": [],
+    "livreur_attribue": {
+      "id_livreur": 9,
+      "nom_livreur": "Philippe-Patrick Deschamps",
+      "statut_livreur": "en pause",
+      "vehicule": "voiture",
+      "date_inscription": "2020-06-06 19:50:24"
+    }
+  },
+  {
+    "_id": "annonce_4",
+    "statut": "livrée",
+    "date_creation": "2025-06-28 18:20:13",
+    "client": {
+      "id_client": 18,
+      "nom_client": "Pierre Gomez",
+      "ville_client": "Versailles",
+      "email": "elodiepayet@tiscali.fr",
+      "date_creation": "2022-01-24 23:11:14"
+    },
+    "restaurant": {
+      "id_restaurant": 5,
+      "nom_restaurant": "Carpentier",
+      "ville_restaurant": "Paris",
+      "note_restaurant": 3.0,
+      "type_cuisine": "Libanais"
+    },
+    "publication_par": {
+      "id_manager": 3,
+      "nom_manager": "Agathe Morin-Chrétien",
+      "type_manager": "support"
+    },
+    "details_commande": [],
+    "prix_total": 43.26,
+    "retribution_livreur": 9.54,
+    "interets_livreurs": [],
+    "livreur_attribue": {
+      "id_livreur": 2,
+      "nom_livreur": "Julie de la Lévêque",
+      "statut_livreur": "actif",
+      "vehicule": "voiture",
+      "date_inscription": "2020-08-01 17:27:06"
+    }
+  },
+  {
+    "_id": "annonce_5",
+    "statut": "en attente",
+    "date_creation": "2025-01-11 17:15:20",
+    "client": {
+      "id_client": 9,
+      "nom_client": "Nicole Weiss",
+      "ville_client": "Nanterre",
+      "email": "guillaume38@letellier.fr",
+      "date_creation": "2024-12-17 23:22:07"
+    },
+    "restaurant": {
+      "id_restaurant": 9,
+      "nom_restaurant": "Valentin SA",
+      "ville_restaurant": "Boulogne-Billancourt",
+      "note_restaurant": 4.0,
+      "type_cuisine": "Italien"
+    },
+    "publication_par": {
+      "id_manager": 2,
+      "nom_manager": "Capucine Girard",
+      "type_manager": "logistique"
+    },
+    "details_commande": [
+      {
+        "id_plat": 9,
+        "nom_plat": "Rouge",
+        "quantite": 1,
+        "prix": 9.34
+      },
+      {
+        "id_plat": 21,
+        "nom_plat": "Traverser",
+        "quantite": 2,
+        "prix": 18.36
+      },
+      {
+        "id_plat": 18,
+        "nom_plat": "Faute",
+        "quantite": 1,
+        "prix": 10.77
+      },
+      {
+        "id_plat": 30,
+        "nom_plat": "Résistance",
+        "quantite": 1,
+        "prix": 23.52
+      }
+    ],
+    "prix_total": 71.58,
+    "retribution_livreur": 7.98,
+    "interets_livreurs": [],
+    "livreur_attribue": {
+      "id_livreur": 9,
+      "nom_livreur": "Philippe-Patrick Deschamps",
+      "statut_livreur": "en pause",
+      "vehicule": "voiture",
+      "date_inscription": "2020-06-06 19:50:24"
+    }
+  },
+  {
+    "_id": "annonce_6",
+    "statut": "livrée",
+    "date_creation": "2025-04-09 22:11:09",
+    "client": {
+      "id_client": 17,
+      "nom_client": "Arthur Maillot-Lefebvre",
+      "ville_client": "Créteil",
+      "email": "aimeguerin@rolland.com",
+      "date_creation": "2022-10-23 14:32:03"
+    },
+    "restaurant": {
+      "id_restaurant": 10,
+      "nom_restaurant": "Mathieu",
+      "ville_restaurant": "Créteil",
+      "note_restaurant": 4.4,
+      "type_cuisine": "Japonais"
+    },
+    "publication_par": {
+      "id_manager": 2,
+      "nom_manager": "Capucine Girard",
+      "type_manager": "logistique"
+    },
+    "details_commande": [
+      {
+        "id_plat": 15,
+        "nom_plat": "Transformer",
+        "quantite": 3,
+        "prix": 22.54
+      },
+      {
+        "id_plat": 29,
+        "nom_plat": "Sombre",
+        "quantite": 2,
+        "prix": 12.55
+      }
+    ],
+    "prix_total": 64.56,
+    "retribution_livreur": 10.39,
+    "interets_livreurs": [
+      {
+        "id_livreur": 2,
+        "nom_livreur": "Julie de la Lévêque",
+        "timestamp_interet": "2025-07-11 23:16:13"
+      }
+    ],
+    "livreur_attribue": {
+      "id_livreur": 3,
+      "nom_livreur": "Julien Jacquet-Barbier",
+      "statut_livreur": "inactif",
+      "vehicule": "vélo",
+      "date_inscription": "2023-09-23 09:24:34"
+    }
+  },
+  {
+    "_id": "annonce_7",
+    "statut": "livrée",
+    "date_creation": "2025-05-01 02:44:31",
+    "client": {
+      "id_client": 17,
+      "nom_client": "Arthur Maillot-Lefebvre",
+      "ville_client": "Créteil",
+      "email": "aimeguerin@rolland.com",
+      "date_creation": "2022-10-23 14:32:03"
+    },
+    "restaurant": {
+      "id_restaurant": 1,
+      "nom_restaurant": "Gaillard S.A.R.L.",
+      "ville_restaurant": "Paris",
+      "note_restaurant": 2.8,
+      "type_cuisine": "Italien"
+    },
+    "publication_par": {
+      "id_manager": 5,
+      "nom_manager": "Frédérique Maréchal",
+      "type_manager": "qualité"
+    },
+    "details_commande": [
+      {
+        "id_plat": 10,
+        "nom_plat": "Respecter",
+        "quantite": 1,
+        "prix": 22.1
+      },
+      {
+        "id_plat": 22,
+        "nom_plat": "Taire",
+        "quantite": 3,
+        "prix": 17.08
+      },
+      {
+        "id_plat": 23,
+        "nom_plat": "Geste",
+        "quantite": 2,
+        "prix": 10.78
+      }
+    ],
+    "prix_total": 16.27,
+    "retribution_livreur": 14.29,
+    "interets_livreurs": [
+      {
+        "id_livreur": 8,
+        "nom_livreur": "Thibaut Lacroix Le Martins",
+        "timestamp_interet": "2025-07-09 08:17:41"
+      }
+    ],
+    "livreur_attribue": {
+      "id_livreur": 6,
+      "nom_livreur": "Daniel Aubry",
+      "statut_livreur": "actif",
+      "vehicule": "scooter",
+      "date_inscription": "2020-12-24 14:59:06"
+    }
+  },
+  {
+    "_id": "annonce_8",
+    "statut": "annulée",
+    "date_creation": "2025-04-22 10:13:46",
+    "client": {
+      "id_client": 10,
+      "nom_client": "Maryse Vasseur",
+      "ville_client": "Boulogne-Billancourt",
+      "email": "faivrebenoit@yahoo.fr",
+      "date_creation": "2021-04-19 20:40:29"
+    },
+    "restaurant": {
+      "id_restaurant": 4,
+      "nom_restaurant": "Meyer",
+      "ville_restaurant": "Boulogne-Billancourt",
+      "note_restaurant": 2.6,
+      "type_cuisine": "Italien"
+    },
+    "publication_par": {
+      "id_manager": 1,
+      "nom_manager": "Nicolas-Gérard Sanchez",
+      "type_manager": "logistique"
+    },
+    "details_commande": [
+      {
+        "id_plat": 22,
+        "nom_plat": "Taire",
+        "quantite": 1,
+        "prix": 17.08
+      }
+    ],
+    "prix_total": 76.55,
+    "retribution_livreur": 5.86,
+    "interets_livreurs": [
+      {
+        "id_livreur": 5,
+        "nom_livreur": "Xavier Lenoir",
+        "timestamp_interet": "2025-01-12 03:30:12"
+      },
+      {
+        "id_livreur": 4,
+        "nom_livreur": "Madeleine Raymond-Guibert",
+        "timestamp_interet": "2025-05-18 19:12:30"
+      }
+    ],
+    "livreur_attribue": {
+      "id_livreur": 4,
+      "nom_livreur": "Madeleine Raymond-Guibert",
+      "statut_livreur": "en pause",
+      "vehicule": "vélo",
+      "date_inscription": "2024-07-01 08:40:36"
+    }
+  },
+  {
+    "_id": "annonce_9",
+    "statut": "en attente",
+    "date_creation": "2025-04-02 05:08:02",
+    "client": {
+      "id_client": 16,
+      "nom_client": "Émilie Delannoy-Langlois",
+      "ville_client": "Nanterre",
+      "email": "cblondel@yahoo.fr",
+      "date_creation": "2022-02-09 05:10:57"
+    },
+    "restaurant": {
+      "id_restaurant": 2,
+      "nom_restaurant": "Aubry",
+      "ville_restaurant": "Nanterre",
+      "note_restaurant": 4.2,
+      "type_cuisine": "Libanais"
+    },
+    "publication_par": {
+      "id_manager": 5,
+      "nom_manager": "Frédérique Maréchal",
+      "type_manager": "qualité"
+    },
+    "details_commande": [
+      {
+        "id_plat": 13,
+        "nom_plat": "Faible",
+        "quantite": 1,
+        "prix": 8.78
+      },
+      {
+        "id_plat": 17,
+        "nom_plat": "Espèce",
+        "quantite": 2,
+        "prix": 18.81
+      },
+      {
+        "id_plat": 2,
+        "nom_plat": "Roche",
+        "quantite": 1,
+        "prix": 12.72
+      }
+    ],
+    "prix_total": 57.88,
+    "retribution_livreur": 14.47,
+    "interets_livreurs": [
+      {
+        "id_livreur": 2,
+        "nom_livreur": "Julie de la Lévêque",
+        "timestamp_interet": "2025-04-19 14:36:21"
+      },
+      {
+        "id_livreur": 6,
+        "nom_livreur": "Daniel Aubry",
+        "timestamp_interet": "2025-08-20 12:34:02"
+      }
+    ],
+    "livreur_attribue": {
+      "id_livreur": 3,
+      "nom_livreur": "Julien Jacquet-Barbier",
+      "statut_livreur": "inactif",
+      "vehicule": "vélo",
+      "date_inscription": "2023-09-23 09:24:34"
+    }
+  },
+  {
+    "_id": "annonce_10",
+    "statut": "livrée",
+    "date_creation": "2025-02-27 07:27:52",
+    "client": {
+      "id_client": 6,
+      "nom_client": "William Chevalier-Rey",
+      "ville_client": "Paris",
+      "email": "cecile52@live.com",
+      "date_creation": "2023-01-08 18:54:13"
+    },
+    "restaurant": {
+      "id_restaurant": 5,
+      "nom_restaurant": "Carpentier",
+      "ville_restaurant": "Paris",
+      "note_restaurant": 3.0,
+      "type_cuisine": "Libanais"
+    },
+    "publication_par": {
+      "id_manager": 5,
+      "nom_manager": "Frédérique Maréchal",
+      "type_manager": "qualité"
+    },
+    "details_commande": [
+      {
+        "id_plat": 15,
+        "nom_plat": "Transformer",
+        "quantite": 2,
+        "prix": 22.54
+      }
+    ],
+    "prix_total": 77.68,
+    "retribution_livreur": 14.29,
+    "interets_livreurs": [],
+    "livreur_attribue": {
+      "id_livreur": 10,
+      "nom_livreur": "Timothée Briand",
+      "statut_livreur": "inactif",
+      "vehicule": "voiture",
+      "date_inscription": "2022-05-09 14:46:23"
+    }
+  },
+  {
+    "_id": "annonce_11",
+    "statut": "livrée",
+    "date_creation": "2025-09-17 06:16:31",
+    "client": {
+      "id_client": 7,
+      "nom_client": "Xavier Le Boutin",
+      "ville_client": "Paris",
+      "email": "isaacpinto@dupuy.net",
+      "date_creation": "2022-10-04 12:16:23"
+    },
+    "restaurant": {
+      "id_restaurant": 5,
+      "nom_restaurant": "Carpentier",
+      "ville_restaurant": "Paris",
+      "note_restaurant": 3.0,
+      "type_cuisine": "Libanais"
+    },
+    "publication_par": {
+      "id_manager": 4,
+      "nom_manager": "Émile Cordier-Vallée",
+      "type_manager": "qualité"
+    },
+    "details_commande": [
+      {
+        "id_plat": 2,
+        "nom_plat": "Roche",
+        "quantite": 1,
+        "prix": 12.72
+      }
+    ],
+    "prix_total": 73.47,
+    "retribution_livreur": 9.51,
+    "interets_livreurs": [
+      {
+        "id_livreur": 7,
+        "nom_livreur": "Robert Meyer",
+        "timestamp_interet": "2025-05-11 15:26:37"
+      }
+    ],
+    "livreur_attribue": {
+      "id_livreur": 6,
+      "nom_livreur": "Daniel Aubry",
+      "statut_livreur": "actif",
+      "vehicule": "scooter",
+      "date_inscription": "2020-12-24 14:59:06"
+    }
+  },
+  {
+    "_id": "annonce_12",
+    "statut": "en attente",
+    "date_creation": "2025-06-20 19:54:35",
+    "client": {
+      "id_client": 8,
+      "nom_client": "Gabriel David",
+      "ville_client": "Versailles",
+      "email": "christophe39@dbmail.com",
+      "date_creation": "2021-10-22 14:35:02"
+    },
+    "restaurant": {
+      "id_restaurant": 4,
+      "nom_restaurant": "Meyer",
+      "ville_restaurant": "Boulogne-Billancourt",
+      "note_restaurant": 2.6,
+      "type_cuisine": "Italien"
+    },
+    "publication_par": {
+      "id_manager": 1,
+      "nom_manager": "Nicolas-Gérard Sanchez",
+      "type_manager": "logistique"
+    },
+    "details_commande": [],
+    "prix_total": 53.24,
+    "retribution_livreur": 7.3,
+    "interets_livreurs": [
+      {
+        "id_livreur": 5,
+        "nom_livreur": "Xavier Lenoir",
+        "timestamp_interet": "2025-03-24 09:06:01"
+      }
+    ],
+    "livreur_attribue": {
+      "id_livreur": 6,
+      "nom_livreur": "Daniel Aubry",
+      "statut_livreur": "actif",
+      "vehicule": "scooter",
+      "date_inscription": "2020-12-24 14:59:06"
+    }
+  },
+  {
+    "_id": "annonce_13",
+    "statut": "en attente",
+    "date_creation": "2025-07-30 17:30:08",
+    "client": {
+      "id_client": 8,
+      "nom_client": "Gabriel David",
+      "ville_client": "Versailles",
+      "email": "christophe39@dbmail.com",
+      "date_creation": "2021-10-22 14:35:02"
+    },
+    "restaurant": {
+      "id_restaurant": 1,
+      "nom_restaurant": "Gaillard S.A.R.L.",
+      "ville_restaurant": "Paris",
+      "note_restaurant": 2.8,
+      "type_cuisine": "Italien"
+    },
+    "publication_par": {
+      "id_manager": 1,
+      "nom_manager": "Nicolas-Gérard Sanchez",
+      "type_manager": "logistique"
+    },
+    "details_commande": [
+      {
+        "id_plat": 29,
+        "nom_plat": "Sombre",
+        "quantite": 1,
+        "prix": 12.55
+      }
+    ],
+    "prix_total": 19.38,
+    "retribution_livreur": 5.31,
+    "interets_livreurs": [
+      {
+        "id_livreur": 1,
+        "nom_livreur": "Auguste Tanguy",
+        "timestamp_interet": "2025-05-07 05:21:05"
+      },
+      {
+        "id_livreur": 6,
+        "nom_livreur": "Daniel Aubry",
+        "timestamp_interet": "2025-05-13 04:11:16"
+      }
+    ],
+    "livreur_attribue": {
+      "id_livreur": 1,
+      "nom_livreur": "Auguste Tanguy",
+      "statut_livreur": "en pause",
+      "vehicule": "vélo",
+      "date_inscription": "2021-10-24 05:56:14"
+    }
+  },
+  {
+    "_id": "annonce_14",
+    "statut": "livrée",
+    "date_creation": "2025-06-01 10:56:20",
+    "client": {
+      "id_client": 11,
+      "nom_client": "Zacharie Briand",
+      "ville_client": "Créteil",
+      "email": "mweber@evrard.org",
+      "date_creation": "2024-09-14 19:30:45"
+    },
+    "restaurant": {
+      "id_restaurant": 2,
+      "nom_restaurant": "Aubry",
+      "ville_restaurant": "Nanterre",
+      "note_restaurant": 4.2,
+      "type_cuisine": "Libanais"
+    },
+    "publication_par": {
+      "id_manager": 5,
+      "nom_manager": "Frédérique Maréchal",
+      "type_manager": "qualité"
+    },
+    "details_commande": [],
+    "prix_total": 58.48,
+    "retribution_livreur": 7.14,
+    "interets_livreurs": [],
+    "livreur_attribue": {
+      "id_livreur": 4,
+      "nom_livreur": "Madeleine Raymond-Guibert",
+      "statut_livreur": "en pause",
+      "vehicule": "vélo",
+      "date_inscription": "2024-07-01 08:40:36"
+    }
+  },
+  {
+    "_id": "annonce_15",
+    "statut": "en attente",
+    "date_creation": "2025-06-03 00:32:05",
+    "client": {
+      "id_client": 5,
+      "nom_client": "Robert Cousin",
+      "ville_client": "Créteil",
+      "email": "marysemuller@gmail.com",
+      "date_creation": "2025-08-16 11:22:01"
+    },
+    "restaurant": {
+      "id_restaurant": 10,
+      "nom_restaurant": "Mathieu",
+      "ville_restaurant": "Créteil",
+      "note_restaurant": 4.4,
+      "type_cuisine": "Japonais"
+    },
+    "publication_par": {
+      "id_manager": 5,
+      "nom_manager": "Frédérique Maréchal",
+      "type_manager": "qualité"
+    },
+    "details_commande": [
+      {
+        "id_plat": 10,
+        "nom_plat": "Respecter",
+        "quantite": 2,
+        "prix": 22.1
+      },
+      {
+        "id_plat": 18,
+        "nom_plat": "Faute",
+        "quantite": 3,
+        "prix": 10.77
+      }
+    ],
+    "prix_total": 66.0,
+    "retribution_livreur": 13.07,
+    "interets_livreurs": [],
+    "livreur_attribue": {
+      "id_livreur": 8,
+      "nom_livreur": "Thibaut Lacroix Le Martins",
+      "statut_livreur": "en pause",
+      "vehicule": "vélo",
+      "date_inscription": "2025-05-24 12:12:34"
+    }
+  },
+  {
+    "_id": "annonce_16",
+    "statut": "livrée",
+    "date_creation": "2025-05-07 22:25:25",
+    "client": {
+      "id_client": 7,
+      "nom_client": "Xavier Le Boutin",
+      "ville_client": "Paris",
+      "email": "isaacpinto@dupuy.net",
+      "date_creation": "2022-10-04 12:16:23"
+    },
+    "restaurant": {
+      "id_restaurant": 2,
+      "nom_restaurant": "Aubry",
+      "ville_restaurant": "Nanterre",
+      "note_restaurant": 4.2,
+      "type_cuisine": "Libanais"
+    },
+    "publication_par": {
+      "id_manager": 1,
+      "nom_manager": "Nicolas-Gérard Sanchez",
+      "type_manager": "logistique"
+    },
+    "details_commande": [],
+    "prix_total": 42.53,
+    "retribution_livreur": 9.67,
+    "interets_livreurs": [
+      {
+        "id_livreur": 4,
+        "nom_livreur": "Madeleine Raymond-Guibert",
+        "timestamp_interet": "2025-03-12 14:52:13"
+      }
+    ],
+    "livreur_attribue": {
+      "id_livreur": 7,
+      "nom_livreur": "Robert Meyer",
+      "statut_livreur": "en pause",
+      "vehicule": "voiture",
+      "date_inscription": "2022-04-26 03:45:17"
+    }
+  },
+  {
+    "_id": "annonce_17",
+    "statut": "annulée",
+    "date_creation": "2025-01-08 21:57:19",
+    "client": {
+      "id_client": 2,
+      "nom_client": "Alexandria Martinez",
+      "ville_client": "Paris",
+      "email": "corinnemarion@guilbert.fr",
+      "date_creation": "2021-11-15 21:14:38"
+    },
+    "restaurant": {
+      "id_restaurant": 2,
+      "nom_restaurant": "Aubry",
+      "ville_restaurant": "Nanterre",
+      "note_restaurant": 4.2,
+      "type_cuisine": "Libanais"
+    },
+    "publication_par": {
+      "id_manager": 1,
+      "nom_manager": "Nicolas-Gérard Sanchez",
+      "type_manager": "logistique"
+    },
+    "details_commande": [
+      {
+        "id_plat": 30,
+        "nom_plat": "Résistance",
+        "quantite": 3,
+        "prix": 23.52
+      },
+      {
+        "id_plat": 3,
+        "nom_plat": "Savoir",
+        "quantite": 1,
+        "prix": 24.27
+      },
+      {
+        "id_plat": 9,
+        "nom_plat": "Rouge",
+        "quantite": 1,
+        "prix": 9.34
+      }
+    ],
+    "prix_total": 37.05,
+    "retribution_livreur": 13.62,
+    "interets_livreurs": [
+      {
+        "id_livreur": 7,
+        "nom_livreur": "Robert Meyer",
+        "timestamp_interet": "2025-09-30 07:30:22"
+      }
+    ],
+    "livreur_attribue": {
+      "id_livreur": 7,
+      "nom_livreur": "Robert Meyer",
+      "statut_livreur": "en pause",
+      "vehicule": "voiture",
+      "date_inscription": "2022-04-26 03:45:17"
+    }
+  },
+  {
+    "_id": "annonce_18",
+    "statut": "livrée",
+    "date_creation": "2025-02-11 23:33:12",
+    "client": {
+      "id_client": 8,
+      "nom_client": "Gabriel David",
+      "ville_client": "Versailles",
+      "email": "christophe39@dbmail.com",
+      "date_creation": "2021-10-22 14:35:02"
+    },
+    "restaurant": {
+      "id_restaurant": 4,
+      "nom_restaurant": "Meyer",
+      "ville_restaurant": "Boulogne-Billancourt",
+      "note_restaurant": 2.6,
+      "type_cuisine": "Italien"
+    },
+    "publication_par": {
+      "id_manager": 2,
+      "nom_manager": "Capucine Girard",
+      "type_manager": "logistique"
+    },
+    "details_commande": [
+      {
+        "id_plat": 22,
+        "nom_plat": "Taire",
+        "quantite": 3,
+        "prix": 17.08
+      },
+      {
+        "id_plat": 10,
+        "nom_plat": "Respecter",
+        "quantite": 3,
+        "prix": 22.1
+      },
+      {
+        "id_plat": 5,
+        "nom_plat": "Sol",
+        "quantite": 2,
+        "prix": 9.64
+      },
+      {
+        "id_plat": 29,
+        "nom_plat": "Sombre",
+        "quantite": 2,
+        "prix": 12.55
+      }
+    ],
+    "prix_total": 24.11,
+    "retribution_livreur": 6.83,
+    "interets_livreurs": [
+      {
+        "id_livreur": 6,
+        "nom_livreur": "Daniel Aubry",
+        "timestamp_interet": "2025-04-18 07:00:35"
+      }
+    ],
+    "livreur_attribue": {
+      "id_livreur": 9,
+      "nom_livreur": "Philippe-Patrick Deschamps",
+      "statut_livreur": "en pause",
+      "vehicule": "voiture",
+      "date_inscription": "2020-06-06 19:50:24"
+    }
+  },
+  {
+    "_id": "annonce_19",
+    "statut": "annulée",
+    "date_creation": "2025-06-16 08:46:20",
+    "client": {
+      "id_client": 15,
+      "nom_client": "Antoinette Samson",
+      "ville_client": "Créteil",
+      "email": "margauxollivier@aubry.fr",
+      "date_creation": "2021-10-20 00:49:06"
+    },
+    "restaurant": {
+      "id_restaurant": 4,
+      "nom_restaurant": "Meyer",
+      "ville_restaurant": "Boulogne-Billancourt",
+      "note_restaurant": 2.6,
+      "type_cuisine": "Italien"
+    },
+    "publication_par": {
+      "id_manager": 1,
+      "nom_manager": "Nicolas-Gérard Sanchez",
+      "type_manager": "logistique"
+    },
+    "details_commande": [
+      {
+        "id_plat": 24,
+        "nom_plat": "Passé",
+        "quantite": 3,
+        "prix": 12.59
+      },
+      {
+        "id_plat": 8,
+        "nom_plat": "Titre",
+        "quantite": 3,
+        "prix": 10.12
+      },
+      {
+        "id_plat": 17,
+        "nom_plat": "Espèce",
+        "quantite": 2,
+        "prix": 18.81
+      },
+      {
+        "id_plat": 4,
+        "nom_plat": "Aspect",
+        "quantite": 1,
+        "prix": 9.74
+      },
+      {
+        "id_plat": 18,
+        "nom_plat": "Faute",
+        "quantite": 1,
+        "prix": 10.77
+      }
+    ],
+    "prix_total": 21.36,
+    "retribution_livreur": 11.52,
+    "interets_livreurs": [],
+    "livreur_attribue": {
+      "id_livreur": 8,
+      "nom_livreur": "Thibaut Lacroix Le Martins",
+      "statut_livreur": "en pause",
+      "vehicule": "vélo",
+      "date_inscription": "2025-05-24 12:12:34"
+    }
+  },
+  {
+    "_id": "annonce_20",
+    "statut": "en attente",
+    "date_creation": "2025-03-10 09:42:55",
+    "client": {
+      "id_client": 18,
+      "nom_client": "Pierre Gomez",
+      "ville_client": "Versailles",
+      "email": "elodiepayet@tiscali.fr",
+      "date_creation": "2022-01-24 23:11:14"
+    },
+    "restaurant": {
+      "id_restaurant": 1,
+      "nom_restaurant": "Gaillard S.A.R.L.",
+      "ville_restaurant": "Paris",
+      "note_restaurant": 2.8,
+      "type_cuisine": "Italien"
+    },
+    "publication_par": {
+      "id_manager": 1,
+      "nom_manager": "Nicolas-Gérard Sanchez",
+      "type_manager": "logistique"
+    },
+    "details_commande": [
+      {
+        "id_plat": 3,
+        "nom_plat": "Savoir",
+        "quantite": 2,
+        "prix": 24.27
+      },
+      {
+        "id_plat": 26,
+        "nom_plat": "Bon",
+        "quantite": 3,
+        "prix": 22.33
+      }
+    ],
+    "prix_total": 41.42,
+    "retribution_livreur": 9.81,
+    "interets_livreurs": [],
+    "livreur_attribue": {
+      "id_livreur": 4,
+      "nom_livreur": "Madeleine Raymond-Guibert",
+      "statut_livreur": "en pause",
+      "vehicule": "vélo",
+      "date_inscription": "2024-07-01 08:40:36"
+    }
+  }
+]

@@ -1,0 +1,11 @@
+id_restaurant;nom_restaurant;ville_restaurant;note_restaurant;type_cuisine
+1;Gaillard S.A.R.L.;Paris;2.8;Italien
+2;Aubry;Nanterre;4.2;Libanais
+3;Briand;Créteil;2.7;Indien
+4;Meyer;Boulogne-Billancourt;2.6;Italien
+5;Carpentier;Paris;3.0;Libanais
+6;Letellier SARL;Paris;4.0;Libanais
+7;Mary S.A.R.L.;Créteil;3.0;Libanais
+8;Boyer Grégoire SA;Boulogne-Billancourt;3.5;Indien
+9;Valentin SA;Boulogne-Billancourt;4.0;Italien
+10;Mathieu;Créteil;4.4;Japonais

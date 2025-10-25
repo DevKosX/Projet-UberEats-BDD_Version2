@@ -1,0 +1,21 @@
+id_commande;id_client;id_restaurant;id_manager_publication;id_livreur_attribue;statut_commande;date_creation;adresse_livraison;prix_total;retribution_livreur
+1;13;6;2;3;annulée;2025-01-18 02:55:06;34, avenue de Courtois, 80112 Da Silvaboeuf;47.08;12.56
+2;4;3;2;7;annulée;2025-08-15 05:22:57;50, rue Agathe Lacroix, 15869 Gomez;19.13;8.82
+3;15;9;3;9;en attente;2025-03-05 02:37:34;3, chemin de Bouchet, 42160 Louis-sur-Mer;59.22;6.15
+4;18;5;3;2;livrée;2025-06-28 18:20:13;13, rue de Alexandre, 41458 Potierboeuf;43.26;9.54
+5;9;9;2;9;en attente;2025-01-11 17:15:20;59, rue Godard, 55698 Sainte Hortense-sur-Mer;71.58;7.98
+6;17;10;2;3;livrée;2025-04-09 22:11:09;90, rue de Marchal, 15951 Guillou;64.56;10.39
+7;17;1;5;6;livrée;2025-05-01 02:44:31;94, rue De Oliveira, 29946 Martin-la-Forêt;16.27;14.29
+8;10;4;1;4;annulée;2025-04-22 10:13:46;895, avenue Margot Benoit, 21489 Morin;76.55;5.86
+9;16;2;5;3;en attente;2025-04-02 05:08:02;12, rue Ollivier, 76936 Alexandre-sur-Mer;57.88;14.47
+10;6;5;5;10;livrée;2025-02-27 07:27:52;rue Joseph Grenier, 08317 Barthelemy;77.68;14.29
+11;7;5;4;6;livrée;2025-09-17 06:16:31;986, rue Noémi Ollivier, 43487 Paris;73.47;9.51
+12;8;4;1;6;en attente;2025-06-20 19:54:35;53, chemin Élodie Faure, 23623 Sainte Anoukboeuf;53.24;7.3
+13;8;1;1;1;en attente;2025-07-30 17:30:08;4, avenue Pénélope Mary, 96705 Chrétien;19.38;5.31
+14;11;2;5;4;livrée;2025-06-01 10:56:20;893, chemin Nguyen, 06562 RodriguezVille;58.48;7.14
+15;5;10;5;8;en attente;2025-06-03 00:32:05;avenue de Dufour, 20465 De Sousa;66.0;13.07
+16;7;2;1;7;livrée;2025-05-07 22:25:25;56, avenue Moreau, 53100 Bourgeois;42.53;9.67
+17;2;2;1;7;annulée;2025-01-08 21:57:19;27, rue de Turpin, 52991 Langlois;37.05;13.62
+18;8;4;2;9;livrée;2025-02-11 23:33:12;466, boulevard Blot, 14919 Sainte Élisabeth;24.11;6.83
+19;15;4;1;8;annulée;2025-06-16 08:46:20;chemin de Richard, 71657 Gay;21.36;11.52
+20;18;1;1;4;en attente;2025-03-10 09:42:55;777, boulevard de Royer, 31473 Colasnec;41.42;9.81
