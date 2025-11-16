@@ -46,12 +46,12 @@ Avant de commencer, assurez-vous d'avoir :
 
 ### Étape 0 : Générer le fichier annonces.json (Terminal 0)
 
-    ```bash
-    source myredis/bin/activate ou source mongo/bin/activate
-    python denormalisation.py
-    ```
+```bash
+source myredis/bin/activate ou source mongo/bin/activate
+python denormalisation.py
+```
 
----
+      ---
 
 ## 3. Comment Lancer la Simulation (Redis) et Voir le Dashboard
 
