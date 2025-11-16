@@ -182,7 +182,7 @@ source mongo/bin/activate
 python3 manager_mongo.py
 ```
 
-### Guide : Consulter vos Bases de Données (Redis & MongoDB)
+# Guide : Consulter vos Bases de Données (Redis & MongoDB)
 
 Voici les commandes essentielles pour inspecter vos données "en direct" pendant que vos simulations tournent.
 
