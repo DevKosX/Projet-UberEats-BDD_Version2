@@ -62,6 +62,7 @@ Pour voir le système complet en action, vous aurez besoin d'ouvrir **5 terminau
 (Assurez-vous qu'il tourne sur le port 6379 par défaut)
 
 ```bash
+cd redis/redis-stable/src
 redis-server
 ```
 ---
