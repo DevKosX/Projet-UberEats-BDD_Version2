@@ -207,14 +207,15 @@ HGETALL stats:2:2025-11-16
 
 
 Résultat attendu :
-
+```bash
 1) "gains_du_jour"
 2) "28.5"
 3) "courses_terminees"
 4) "2"
+```
 
 
-Voir la compétition en direct (Debug)
+## Voir la compétition en direct (Debug)
 
 La commande MONITOR vous montre toutes les commandes que Redis reçoit en temps réel. C'est le meilleur moyen de voir la compétition.
 
@@ -222,15 +223,15 @@ MONITOR
 
 
 Vous verrez en direct :
-
+```bash
 ... "HSET" "interets:annonce_123" "1" "1678886400.123"
 ... "HSET" "interets:annonce_123" "2" "1678886400.125"
 ... "HGETALL" "interets:annonce_123"
 ... "SET" "KEY_COURSE_ACTIVE" "..."
+```
 
+##  2. Consulter MongoDB (L'info "durable")
 
-### 2. Consulter MongoDB (L'info "durable")
----
 
 Vous avez deux options :
 
