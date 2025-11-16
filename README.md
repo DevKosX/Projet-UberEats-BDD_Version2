@@ -1,4 +1,4 @@
-# 🛵 Simulation UberEats V2 : MongoDB, Redis & Dashboard Flask
+# Simulation UberEats V2 : MongoDB, Redis & Dashboard Flask
 
 Ce projet simule un système de dispatch de courses en temps réel, similaire à UberEats, en utilisant deux backends (MongoDB et Redis). Il inclut désormais un **dashboard web en direct** (via Flask) pour visualiser les statistiques des livreurs (nombre de courses et gains) au fur et à mesure que la simulation se déroule.
 
@@ -44,7 +44,10 @@ Avant de commencer, assurez-vous d'avoir :
 
 * Le fichier `annonces.json`. S'il n'existe pas, générez-le en lançant :
 
+### Étape 0 : Générer le fichier annonces.json (Terminal 0)
+
     ```bash
+    source myredis/bin/activate ou source mongo/bin/activate
     python denormalisation.py
     ```
 
@@ -54,9 +57,67 @@ Avant de commencer, assurez-vous d'avoir :
 
 Pour voir le système complet en action, vous aurez besoin d'ouvrir **5 terminaux**. Suivez cet ordre :
 
-### Étape 1 : Lancer le Serveur Redis
+### Étape 1 : Lancer le Serveur Redis (Terminal 1)
 
 (Assurez-vous qu'il tourne sur le port 6379 par défaut)
 
 ```bash
 redis-server
+```
+---
+
+### Étape 2 : Lancer le back-end pour avoir le dashbord (Terminal 2)
+
+```bash
+source venv/bin/activate
+python avec-redis/stats_service_redis.py
+```
+---
+
+
+### Étape 3 : Lancer le app.py pour avoir un dashbord (Terminal 3)
+
+```bash
+source venv/bin/activate
+python app.py
+```
+---
+
+
+### Étape 4 : Lancer le livreur 1 :  (Terminal 4)
+
+```bash
+source myredis/bin/activate
+python3 livreur_redis.py 1 "Auguste Tanguy"
+```
+---
+
+
+### Étape 5 : Lancer le livreur 2 : (Terminal 5)
+
+```bash
+source myredis/bin/activate
+python3 livreur_redis.py 2 "Julie de la Lévêque"
+```
+---
+
+
+### Étape 6 : Lancer le manager (Terminal 6)
+
+```bash
+source myredis/bin/activate
+python3 manager_redis.py 2
+```
+---
+
+### Étape 7 : Acceder à la page web 
+
+```bash
+
+http://127.0.0.1:5000/dashboard?livreurId=
+```
+---
+
+### 👤 Auteur
+ Mohamed Kosbar - Projet Universitaire BUT3 
+
