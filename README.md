@@ -84,7 +84,7 @@ python app.py
 ---
 
 
-### Étape 4 : Lancer le livreur 1 :  (Terminal 4)
+### Étape 4 : Lancer le livreur 1 : Auguste Tanguy (Terminal 4)
 
 ```bash
 source myredis/bin/activate
@@ -93,7 +93,7 @@ python3 livreur_redis.py 1 "Auguste Tanguy"
 ---
 
 
-### Étape 5 : Lancer le livreur 2 : (Terminal 5)
+### Étape 5 : Lancer le livreur 2 : Julie de la Lévêque (Terminal 5)
 
 ```bash
 source myredis/bin/activate
@@ -102,15 +102,22 @@ python3 livreur_redis.py 2 "Julie de la Lévêque"
 ---
 
 
-### Étape 6 : Lancer le manager (Terminal 6)
+### Étape 6 : Lancer le livreur 3 : Julien Jacquet-Barbier (Terminal 6)
 
 ```bash
 source myredis/bin/activate
-python3 manager_redis.py 2
+python3 livreur_redis.py 3 "Julien Jacquet-Barbier"
 ```
 ---
 
-### Étape 7 : Acceder à la page web 
+### Étape 7 : Lancer le manager (Terminal 7)
+
+```bash
+source myredis/bin/activate
+python3 manager_redis.py 
+```
+---
+### Étape 8 : Acceder à la page web 
 
 ```bash
 
