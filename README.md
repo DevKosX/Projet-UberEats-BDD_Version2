@@ -51,7 +51,7 @@ source myredis/bin/activate ou source mongo/bin/activate
 python denormalisation.py
 ```
 
-      ---
+    
 
 ## 3. Comment Lancer la Simulation (Redis) et Voir le Dashboard
 
