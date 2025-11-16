@@ -69,8 +69,8 @@ redis-server
 ### Étape 2 : Lancer le back-end pour avoir le dashbord (Terminal 2)
 
 ```bash
-source venv/bin/activate
-python avec-redis/stats_service_redis.py
+source myredis/bin/activate
+python stats_service_redis.py
 ```
 ---
 
