@@ -186,8 +186,8 @@ python3 manager_mongo.py
 
 Voici les commandes essentielles pour inspecter vos données "en direct" pendant que vos simulations tournent.
 
-### 1. Consulter Redis (L'info "à chaud")
--
+##  1. Consulter Redis (L'info "à chaud")
+
 
 - Ouvrez un nouveau terminal et lancez l'interface de commande Redis.
 ```bash
@@ -200,13 +200,16 @@ Une fois dedans (vous verrez 127.0.0.1:6379>), voici les commandes les plus util
 Voir les clés de statistiques (Dashboard)
 
 Pour voir les statistiques du livreur "Julie" (ID 2) pour aujourd'hui (par exemple, 16 Nov 2025) :
-
+```bash
 # HGETALL = "Hash Get All" (Obtenir tous les champs et valeurs d'un Hash)
 # Remplacez l'ID et la date par ce que vous testez
 HGETALL stats:2:2025-11-16
 
+```
+---
 
-Résultat attendu :
+##  Résultat attendu :
+
 ```bash
 1) "gains_du_jour"
 2) "28.5"
