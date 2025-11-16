@@ -285,7 +285,7 @@ Vous pouvez voir toutes les données, les filtrer et même les modifier visuelle
 
 
 
-### 👤 Auteur
----
+## Auteur
+
 ## Mohamed Kosbar - Projet Universitaire BUT3 
 
